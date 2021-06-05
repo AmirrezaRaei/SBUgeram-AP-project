@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Java fx 16">
+    <CLASSES>
+      <root url="file://E:/Program/Compailer/Java FX/javafx-sdk-16/lib" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://E:/Program/Compailer/Java FX/javafx-sdk-16/lib" />
+    </SOURCES>
+    <jarDirectory url="file://E:/Program/Compailer/Java FX/javafx-sdk-16/lib" recursive="false" />
+    <jarDirectory url="file://E:/Program/Compailer/Java FX/javafx-sdk-16/lib" recursive="false" type="SOURCES" />
+  </library>
+</component>
