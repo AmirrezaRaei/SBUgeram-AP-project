@@ -9,7 +9,6 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: #ccdb86;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.InformationController">
    <children>
       <ImageView fitHeight="121.0" fitWidth="119.0" layoutX="149.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true">
@@ -24,7 +23,7 @@
       <Label layoutX="31.0" layoutY="350.0" prefHeight="17.0" prefWidth="60.0" text="Gender :" />
       <Label layoutX="31.0" layoutY="383.0" text="phone : " />
       <Label layoutX="149.0" layoutY="22.0" text="privacy information" />
-      <Button layoutX="165.0" layoutY="528.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="69.0" style="-fx-background-color: #dce0cd;" text="Done!" textFill="#80909e">
+      <Button fx:id="nextPage" layoutX="165.0" layoutY="528.0" mnemonicParsing="false" onAction="#goToNextPage" prefHeight="46.0" prefWidth="69.0" style="-fx-background-color: #dce0cd;" text="Next" textFill="#80909e">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
@@ -43,11 +42,6 @@
       <TextField fx:id="gender_field" alignment="BOTTOM_LEFT" layoutX="85.0" layoutY="337.0" prefHeight="25.0" prefWidth="128.0" promptText="male,female,other" style="-fx-background-color: #ccdb86;" />
       <TextField fx:id="part1_phone_field" layoutX="64.0" layoutY="369.0" prefHeight="17.0" prefWidth="43.0" promptText="+98" style="-fx-background-color: #ccdb86;" />
       <TextField fx:id="part2_phone_field" layoutX="113.0" layoutY="369.0" prefHeight="25.0" prefWidth="201.0" promptText="912*****" style="-fx-background-color: #ccdb86;" />
-      <Label layoutX="321.0" layoutY="274.0" prefHeight="17.0" prefWidth="7.0" text="*" textFill="#b3504b">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Label>
       <Label layoutX="158.0" layoutY="311.0" prefHeight="17.0" prefWidth="7.0" text="*" textFill="#b3504b">
          <font>
             <Font size="24.0" />
@@ -64,32 +58,32 @@
             <Image url="file:/C:/Users/amirr/Desktop/AP/SBUgeram%20-%20project/logos/refresh.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="image1" fitHeight="73.0" fitWidth="118.0" layoutX="90.0" layoutY="440.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="image1" fitHeight="73.0" fitWidth="118.0" layoutX="90.0" layoutY="440.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="file:/C:/Users/amirr/Desktop/AP/SBUgeram%20-%20project/logos/sample1.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="image2" fitHeight="38.0" fitWidth="128.0" layoutX="94.0" layoutY="441.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="image2" fitHeight="38.0" fitWidth="128.0" layoutX="94.0" layoutY="441.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="file:/C:/Users/amirr/Desktop/AP/SBUgeram%20-%20project/logos/sample2.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="image3" fitHeight="39.0" fitWidth="154.0" layoutX="91.0" layoutY="440.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="image3" fitHeight="39.0" fitWidth="154.0" layoutX="91.0" layoutY="440.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="file:/C:/Users/amirr/Desktop/AP/SBUgeram%20-%20project/logos/sample3.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="image4" fitHeight="39.0" fitWidth="138.0" layoutX="92.0" layoutY="441.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="image4" fitHeight="39.0" fitWidth="138.0" layoutX="92.0" layoutY="441.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="file:/C:/Users/amirr/Desktop/AP/SBUgeram%20-%20project/logos/sample4.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="image5" fitHeight="46.0" fitWidth="115.0" layoutX="92.0" layoutY="438.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="image5" fitHeight="46.0" fitWidth="115.0" layoutX="92.0" layoutY="438.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="file:/C:/Users/amirr/Desktop/AP/SBUgeram%20-%20project/logos/sample5.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="image6" fitHeight="39.0" fitWidth="118.0" layoutX="92.0" layoutY="439.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="image6" fitHeight="39.0" fitWidth="118.0" layoutX="92.0" layoutY="439.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../../logos/sample6.png" />
          </image>
@@ -106,5 +100,7 @@
             <Image url="@../../logos/sbulogo.png" />
          </image>
       </ImageView>
+      <Label fx:id="fields_empty_alert" alignment="CENTER" layoutX="100.0" layoutY="411.0" prefHeight="17.0" prefWidth="201.0" text="Please fill in the fields that have stars" textFill="#b3504b" visible="false" />
+      <Label fx:id="wrongAnswer_alert" alignment="CENTER" layoutX="170.0" layoutY="419.0" text="Wrong answer!" textFill="#b3504b" visible="false" />
    </children>
 </Pane>
