@@ -1,11 +1,14 @@
 package Controller;
 
+import Model.PageLoader;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
+
+import java.io.IOException;
 
 
 public class LoginController {
@@ -16,6 +19,7 @@ public class LoginController {
     // button
     public Button login_Button;
     public CheckBox password_icon;
+    public Hyperlink sign_up_button;
     // alert
     public Label password_alert;
     public Label username_alert;
@@ -23,6 +27,8 @@ public class LoginController {
     // security 
     public ImageView hide_password;
     public ImageView showpassword;
+
+
 
     @FXML
     public void initialize(){
@@ -36,8 +42,8 @@ public class LoginController {
         transition.setByX(297);
         transition.playFromStart();
         //login button
-        transition = new TranslateTransition(Duration.millis(5000),login_Button);
-        transition.setByY(-169);
+        transition = new TranslateTransition(Duration.millis(4000),login_Button);
+        transition.setByY(-173);
         transition.playFromStart();
 
         transition = new TranslateTransition(Duration.millis(3500),showpassword);
@@ -81,5 +87,9 @@ public class LoginController {
             showpassword.setVisible(true);
             hide_password.setVisible(false);
         }
+    }
+
+    public void sign_up(ActionEvent actionEvent) throws IOException { // go to signup page
+        new PageLoader().load("signUp");
     }
 }
