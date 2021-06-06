@@ -25,7 +25,7 @@ public class signUpController {
     public ImageView test_done;
     public ImageView not_test;
 
-    public void signUp(ActionEvent actionEvent) { // go to next page
+    public void signUp(ActionEvent actionEvent) throws IOException { // go to next page
         // invisible all alert
         confirm_password_alert.setVisible(false);
         username_alert.setVisible(false);
@@ -45,8 +45,7 @@ public class signUpController {
         else if (not_test.isVisible())
             Robot_alert.setVisible(true);
         else if ((password.equalsIgnoreCase(confirm))){
-            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Hi Ali!\n welcome back");
-            alert.showAndWait();
+            new PageLoader().load("usernameInformation");
         }
     }
 
