@@ -110,12 +110,12 @@
             <Label fx:id="username_alert" alignment="CENTER" layoutX="148.0" layoutY="237.0" prefHeight="18.0" prefWidth="238.0" text="username must be at least 3 characters" textFill="#b3504b" visible="false" />
             <Label fx:id="password_alert" alignment="CENTER" layoutX="148.0" layoutY="238.0" prefHeight="18.0" prefWidth="226.0" text="password must be at least 6 characters" textFill="#b3504b" visible="false" />
             <CheckBox fx:id="human_Test" layoutX="173.0" layoutY="447.0" mnemonicParsing="false" onAction="#check" prefHeight="51.0" prefWidth="186.0" text="human test" />
-            <ImageView fx:id="test_done" disable="true" fitHeight="64.0" fitWidth="199.0" layoutX="167.0" layoutY="447.0" pickOnBounds="true" preserveRatio="true" visible="false">
+            <ImageView fx:id="test_done" disable="true" fitHeight="64.0" fitWidth="199.0" layoutX="161.0" layoutY="446.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
                   <Image url="file:/C:/Users/amirr/Desktop/AP/SBUgeram%20-%20project/logos/not%20robot%20test(2).png.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="not_test" disable="true" fitHeight="150.0" fitWidth="200.0" layoutX="161.0" layoutY="447.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="not_test" disable="true" fitHeight="150.0" fitWidth="200.0" layoutX="160.0" layoutY="447.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="file:/C:/Users/amirr/Desktop/AP/SBUgeram%20-%20project/logos/not%20robot%20test(1).png.png" />
                </image>
