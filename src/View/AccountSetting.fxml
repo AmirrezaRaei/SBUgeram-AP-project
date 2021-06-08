@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: #ccdb86;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AccountSetting">
+   <children>
+      <Label alignment="CENTER" layoutX="111.0" layoutY="25.0" prefHeight="17.0" prefWidth="166.0" text="Account setting">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Button fx:id="changePicture_button" layoutX="139.0" layoutY="55.0" mnemonicParsing="false" onAction="#changeProfileImage" prefHeight="111.0" prefWidth="111.0" style="-fx-background-color: #ccdb86;" />
+      <ImageView fx:id="profile_image" disable="true" fitHeight="150.0" fitWidth="200.0" layoutX="94.0" layoutY="-190.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="file:/C:/Users/amirr/Desktop/AP/SBUgeram%20-%20project/logos/user1.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="Done_button" layoutX="431.0" layoutY="518.0" mnemonicParsing="false" onAction="#Done" prefHeight="43.0" prefWidth="54.0" style="-fx-background-color: #dce0cd;" text="Done" textFill="#80909e">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
+      <Label fx:id="Account_Privacy" layoutX="27.0" layoutY="-35.0" prefHeight="17.0" prefWidth="111.0" text="Account Privacy :">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Button fx:id="Private_button" layoutX="150.0" layoutY="-39.0" mnemonicParsing="false" onAction="#privet_account" prefHeight="25.0" prefWidth="24.0" style="-fx-background-color: #ccdb86;" />
+      <Button fx:id="Public_button" layoutX="268.0" layoutY="-39.0" mnemonicParsing="false" onAction="#public_account" prefHeight="25.0" prefWidth="24.0" style="-fx-background-color: #ccdb86;" />
+      <ImageView fx:id="private_Unselected" disable="true" fitHeight="25.0" fitWidth="24.0" layoutX="152.0" layoutY="222.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="file:/C:/Users/amirr/Desktop/AP/SBUgeram%20-%20project/logos/choose%20icon(not%20selected).png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="private_select" disable="true" fitHeight="25.0" fitWidth="24.0" layoutX="152.0" layoutY="-39.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="file:/C:/Users/amirr/Desktop/AP/SBUgeram%20-%20project/logos/choose%20icon(selected).png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="public_unselected" disable="true" fitHeight="25.0" fitWidth="33.0" layoutX="268.0" layoutY="-39.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="file:/C:/Users/amirr/Desktop/AP/SBUgeram%20-%20project/logos/choose%20icon(not%20selected).png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="public_selected" disable="true" fitHeight="51.0" fitWidth="25.0" layoutX="268.0" layoutY="222.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="file:/C:/Users/amirr/Desktop/AP/SBUgeram%20-%20project/logos/choose%20icon(selected).png" />
+         </image>
+      </ImageView>
+      <Label fx:id="private_text" layoutX="186.0" layoutY="-35.0" prefHeight="17.0" prefWidth="42.0" text="Private" textFill="#80909e" />
+      <Label fx:id="public_text" layoutX="308.0" layoutY="-35.0" prefHeight="17.0" prefWidth="61.0" text="Public" textFill="#80909e" />
+      <Label fx:id="bio_text" layoutX="27.0" layoutY="-45.0" text="Bio :">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Line fx:id="bio_Line" endX="143.0" endY="-10.0" layoutX="164.0" layoutY="-25.0" startX="-98.0" startY="-10.0" />
+      <Button fx:id="back_button" layoutX="-112.0" layoutY="518.0" mnemonicParsing="false" onAction="#lastPage" prefHeight="43.0" prefWidth="54.0" style="-fx-background-color: #dce0cd;" text="Back" textFill="#80909e">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
+      <TextField fx:id="bio_field" alignment="BOTTOM_LEFT" layoutX="66.0" layoutY="-169.0" maxHeight="133.0" maxWidth="242.0" prefHeight="133.0" prefWidth="242.0" style="-fx-background-color: #ccdb86;" />
+   </children>
+</Pane>
