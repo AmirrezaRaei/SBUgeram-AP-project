@@ -1,5 +1,7 @@
 package Controller;
 
+import Model.Gender;
+import Model.PageLoader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -8,7 +10,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 
+import java.io.IOException;
 import java.util.Random;
+
+import static Model.Main.currentUser;
 
 public class InformationController {
     //field
@@ -51,29 +56,29 @@ public class InformationController {
     public void initialize() {
         imageCounter = getRandomNumberUsingNextInt(0, 5);
         visibleImage();
+        //auto fill
+        if (!currentUser.getFirstname().equals(""))
+            first_name.setText(currentUser.getFirstname());
+        if (!currentUser.getLastname().equals(""))
+            last_name.setText(currentUser.getLastname());
+        if (!currentUser.getEmailAddress().equals(""))
+            Email_field.setText(currentUser.getEmailAddress());
+        if (!(currentUser.getAge() == 0))
+            age_field.setText(Integer.toString(currentUser.getAge()));
+        if (!(currentUser.getGender() == Gender.unselected))
+            gender_field.setText(currentUser.getGender().toString());
+
     }
 
     public void visibleImage() {
         invisibleTest();
         switch (imageCounter) {
-            case 0:
-                image1.setVisible(true);
-                break;
-            case 1:
-                image2.setVisible(true);
-                break;
-            case 2:
-                image3.setVisible(true);
-                break;
-            case 3:
-                image4.setVisible(true);
-                break;
-            case 4:
-                image5.setVisible(true);
-                break;
-            case 5:
-                image6.setVisible(true);
-                break;
+            case 0 -> image1.setVisible(true);
+            case 1 -> image2.setVisible(true);
+            case 2 -> image3.setVisible(true);
+            case 3 -> image4.setVisible(true);
+            case 4 -> image5.setVisible(true);
+            case 5 -> image6.setVisible(true);
         }
     }
 
@@ -91,7 +96,7 @@ public class InformationController {
         visibleImage();
     }
 
-    public void goToNextPage(ActionEvent actionEvent) {
+    public void goToNextPage(ActionEvent actionEvent) throws IOException {
         if (fields_empty_alert.isVisible() || wrongAnswer_alert.isVisible()){
             fields_empty_alert.setVisible(false);
             wrongAnswer_alert.setVisible(false);
@@ -109,8 +114,29 @@ public class InformationController {
             visibleImage();
         }
         else {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Hi Ali!\n welcome back");
-            alert.showAndWait();
+            updateProfileInformation(); // update profile
+            new PageLoader().load("AccountSetting");
         }
+    }
+
+    public void updateProfileInformation(){
+        currentUser.setFirstname(first_name.getText());
+        currentUser.setAge(Integer.parseInt(age_field.getText()));
+
+        String anotherDetails = last_name.getText(); // for last name
+        if (!anotherDetails.isEmpty())
+            currentUser.setLastname(anotherDetails);
+
+        anotherDetails = Email_field.getText(); // for email address
+        if (!anotherDetails.isEmpty())
+            currentUser.setEmailAddress(anotherDetails);
+
+        anotherDetails = gender_field.getText();// for gender
+        if (!anotherDetails.isEmpty())
+            currentUser.setGender(anotherDetails);
+
+        anotherDetails = (part1_phone_field.getText() + part2_phone_field.getText()); // for phone number
+        if (!anotherDetails.isEmpty())
+            currentUser.setPhone(anotherDetails);
     }
 }

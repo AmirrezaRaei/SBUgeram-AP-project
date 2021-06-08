@@ -13,7 +13,7 @@
    <children>
       <ImageView fitHeight="121.0" fitWidth="119.0" layoutX="149.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="file:/C:/Users/amirr/Desktop/AP/SBUgeram%20-%20project/logos/privacy-policy.png" />
+            <Image url="file:/C:/Users/amirr/Desktop/AP/SBUgeram%20-%20project/logos/imageedit_2_2838426009.png" />
          </image>
       </ImageView>
       <Label layoutX="36.0" layoutY="200.0" prefHeight="17.0" prefWidth="69.0" text="First name :" />
