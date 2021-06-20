@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: #ccdb86;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.TimeLineController">
+   <children>
+      <Line endX="299.0" endY="3.814697265625E-6" layoutX="101.0" layoutY="40.0" startX="-100.0" />
+      <Line endX="299.0" endY="-1.0" layoutX="100.0" layoutY="557.0" startX="-100.0" />
+      <Label layoutX="1.0" prefHeight="39.0" prefWidth="116.0" text="SBUGERAM" textFill="#80909e">
+         <font>
+            <Font name="Segoe Script Bold" size="17.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="homeButton" fitHeight="35.0" fitWidth="35.0" layoutX="17.0" layoutY="561.0" onMouseClicked="#refresh" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="file:/C:/Users/amirr/Desktop/AP/SBUgeram%20-%20project/logos/imageedit_2_6207250110.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="17.0" layoutY="559.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="file:/C:/Users/amirr/Desktop/AP/SBUgeram%20-%20project/logos/homebutton_unselected.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="sbuButton" fitHeight="35.0" fitWidth="35.0" layoutX="170.0" layoutY="561.0" onMouseClicked="#uploadNewPost" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="file:/C:/Users/amirr/Desktop/AP/SBUgeram%20-%20project/logos/imageedit_5_9221214218.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="250.0" layoutY="559.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="file:/C:/Users/amirr/Desktop/AP/SBUgeram%20-%20project/logos/heartbutton_selected.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="activityButton" fitHeight="35.0" fitWidth="35.0" layoutX="250.0" layoutY="560.0" onMouseClicked="#activityPage" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="file:/C:/Users/amirr/Desktop/AP/SBUgeram%20-%20project/logos/imageedit_2_8457055285.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="profileButton" fitHeight="45.0" fitWidth="45.0" layoutX="322.0" layoutY="553.0" onMouseClicked="#ProfilePage" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="file:/C:/Users/amirr/Desktop/AP/SBUgeram%20-%20project/logos/imageedit_4_6401240938.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="45.0" fitWidth="45.0" layoutX="322.0" layoutY="553.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="file:/C:/Users/amirr/Desktop/AP/SBUgeram%20-%20project/logos/imageedit_7_4893511055.png" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="1.0" layoutY="42.0" prefHeight="512.0" prefWidth="398.0">
+         <children>
+            <ListView fx:id="postList" editable="true" prefHeight="512.0" prefWidth="398.0" style="-fx-background-color: #ccdb86;" />
+         </children>
+      </AnchorPane>
+      <ImageView fitHeight="45.0" fitWidth="45.0" layoutX="87.0" layoutY="557.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="file:/C:/Users/amirr/Desktop/AP/SBUgeram%20-%20project/logos/search%20Icon%20selected.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="searchButton" fitHeight="45.0" fitWidth="45.0" layoutX="87.0" layoutY="555.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="file:/C:/Users/amirr/Desktop/AP/SBUgeram%20-%20project/logos/search%20Icon%20unselected.png" />
+         </image>
+      </ImageView>
+   </children>
+</Pane>

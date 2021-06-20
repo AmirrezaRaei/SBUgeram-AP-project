@@ -16,7 +16,7 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Button fx:id="changePicture_button" layoutX="139.0" layoutY="55.0" mnemonicParsing="false" onAction="#changeProfileImage" prefHeight="111.0" prefWidth="111.0" style="-fx-background-color: #ccdb86;" />
+      <Button fx:id="changePicture_button" layoutX="139.0" layoutY="55.0" mnemonicParsing="false" onAction="#changeProfileImage" prefHeight="117.0" prefWidth="111.0" style="-fx-background-color: #ccdb86;" />
       <ImageView fx:id="profile_image" disable="true" fitHeight="150.0" fitWidth="200.0" layoutX="94.0" layoutY="-190.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="file:/C:/Users/amirr/Desktop/AP/SBUgeram%20-%20project/logos/user1.png" />

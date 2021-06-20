@@ -1,11 +1,15 @@
 package Controller;
 
 import Model.PageLoader;
+import Model.Profile;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
+
+import static Model.Main.currentUser;
 
 public class signUpController {
     // field
@@ -44,13 +48,14 @@ public class signUpController {
             confirm_password_alert.setVisible(true);
         else if (not_test.isVisible())
             Robot_alert.setVisible(true);
-        else if ((password.equalsIgnoreCase(confirm))){
+        else if ((password.equalsIgnoreCase(confirm))) {
+            currentUser = new Profile(username, password);
             new PageLoader().load("usernameInformation");
         }
     }
 
     public void check(ActionEvent actionEvent) {// not robot test
-        if (!test_done.isVisible()){
+        if (!test_done.isVisible()) {
             not_test.setVisible(false);
             test_done.setVisible(true);
         } else {
@@ -61,6 +66,4 @@ public class signUpController {
     public void login(ActionEvent actionEvent) throws IOException {
         new PageLoader().load("Login");
     }
-
-
 }

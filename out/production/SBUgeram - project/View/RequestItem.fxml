@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="100.0" prefWidth="400.0" style="-fx-background-color: #dce0cd;"
+            xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="Controller.RequestItemController">
+    <children>
+        <ImageView fx:id="user_image" fitHeight="65.0" fitWidth="95.0" layoutY="18.0" pickOnBounds="true"
+                   preserveRatio="true">
+            <image>
+                <Image url="file:/C:/Users/amirr/Desktop/AP/SBUgeram%20-%20project/logos/user1.png"/>
+            </image>
+        </ImageView>
+        <Label fx:id="request_text" layoutX="107.0" layoutY="18.0" prefHeight="30.0" prefWidth="286.0"
+               textFill="#80909e"/>
+        <Button fx:id="accept_button" layoutX="280.0" layoutY="44.0" mnemonicParsing="false" onAction="#accept"
+                prefHeight="41.0" prefWidth="42.0" style="-fx-background-color: #dce0cd;" text="✔" textFill="#0fae12">
+            <font>
+                <Font name="System Bold" size="18.0"/>
+            </font>
+        </Button>
+        <Button fx:id="reject_button" layoutX="335.0" layoutY="50.0" mnemonicParsing="false" onAction="#reject"
+                prefHeight="30.0" prefWidth="42.0" style="-fx-background-color: #dce0cd;" text="❌" textFill="#e40c0c">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Button>
+    </children>
+</AnchorPane>

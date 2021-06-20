@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="post_pane" prefHeight="380.0" prefWidth="400.0" style="-fx-background-color: #ccdb86;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Line endX="311.1000061035156" endY="1.1444091796875E-5" layoutX="101.0" layoutY="39.0" startX="-100.0" />
+      <Line endX="302.0929260253906" layoutX="111.0" layoutY="289.0" startX="-111.0000228881836" />
+      <ImageView fx:id="post_image" fitHeight="212.0" fitWidth="414.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+         <viewport>
+            <Rectangle2D height="200.0" width="400.0" />
+         </viewport>
+         <image>
+            <Image url="file:/C:/Users/amirr/Desktop/AP/SBUgeram%20-%20project/logos/screen%20color.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="username_image" fitHeight="34.0" fitWidth="50.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../logos/user1.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="username" layoutX="49.0" layoutY="7.0" onMouseClicked="#profile_page" prefHeight="17.0" prefWidth="111.0">
+         <font>
+            <Font name="Comic Sans MS" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="title" layoutX="1.0" layoutY="310.0" prefHeight="20.0" prefWidth="111.0" text="title :">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="description" alignment="TOP_LEFT" layoutY="330.0" lineSpacing="2.0" prefHeight="22.0" prefWidth="414.0">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label fx:id="likes_count" layoutX="1.0" layoutY="289.0" prefHeight="20.0" prefWidth="100.0">
+         <font>
+            <Font name="Century" size="16.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="empty_heart" fitHeight="33.0" fitWidth="34.0" layoutX="1.0" layoutY="258.0" onMouseClicked="#like_post" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="file:/C:/Users/amirr/Desktop/AP/SBUgeram%20-%20project/logos/imageedit_2_8457055285.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="fill_heart" fitHeight="48.0" fitWidth="50.0" layoutX="-7.0" layoutY="251.0" onMouseClicked="#unlike_post" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="file:/C:/Users/amirr/Desktop/AP/SBUgeram%20-%20project/logos/heart_like_logo.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="comment" fitHeight="48.0" fitWidth="48.0" layoutX="34.0" layoutY="250.0" onMouseClicked="#seeTheComments" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="file:/C:/Users/amirr/Desktop/AP/SBUgeram%20-%20project/logos/instagram-comment-bubble-icon-12.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="repost" fitHeight="48.0" fitWidth="48.0" layoutX="355.0" layoutY="243.0" onMouseClicked="#repost" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="file:/C:/Users/amirr/Desktop/AP/SBUgeram%20-%20project/logos/repost%20icon.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="comments" layoutX="10.0" layoutY="355.0" prefHeight="17.0" prefWidth="189.0" textFill="#80909e">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="repost_count" alignment="CENTER" layoutX="355.0" layoutY="290.0" prefHeight="18.0" prefWidth="56.0" />
+      <Label fx:id="show_comments_count" layoutX="2.0" layoutY="352.0" prefHeight="34.0" prefWidth="229.0" text="view all comments" textFill="#80909e">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="unRepost" fitHeight="48.0" fitWidth="48.0" layoutX="355.0" layoutY="243.0" onMouseClicked="#unRepost" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="file:/C:/Users/amirr/Desktop/AP/SBUgeram%20-%20project/logos/repost%20icon.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

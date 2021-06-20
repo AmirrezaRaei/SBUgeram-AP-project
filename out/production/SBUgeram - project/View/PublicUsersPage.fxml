@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: #ccdb86;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.PublicUsersPageController">
+   <children>
+      <Line endX="299.0" endY="3.814697265625E-6" layoutX="101.0" layoutY="32.0" startX="-100.0" />
+      <Line endX="299.0" layoutX="100.0" layoutY="557.0" startX="-100.0" />
+      <Label fx:id="username" layoutY="1.0" prefHeight="26.0" prefWidth="247.0" textFill="#80909e">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="27.0" layoutY="571.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="file:/C:/Users/amirr/Desktop/AP/SBUgeram%20-%20project/logos/imageedit_2_6207250110.png" />
+         </image>
+      </ImageView>
+      <Label alignment="CENTER" layoutX="164.0" layoutY="90.0" prefHeight="20.0" prefWidth="52.0" text="Post">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="236.0" layoutY="90.0" prefHeight="17.0" prefWidth="58.0" text="Followers">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="318.0" layoutY="90.0" prefHeight="20.0" prefWidth="81.0" text="Following">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="post_count" alignment="CENTER" layoutX="166.0" layoutY="52.0" prefHeight="34.0" prefWidth="45.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="followers_count" alignment="CENTER" layoutX="229.0" layoutY="52.0" prefHeight="34.0" prefWidth="71.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="following_count" alignment="CENTER" layoutX="323.0" layoutY="52.0" prefHeight="34.0" prefWidth="71.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="user_firstname" layoutY="146.0" prefHeight="27.0" prefWidth="172.0">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="profile_bio" layoutY="184.0" prefHeight="35.0" prefWidth="400.0">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="profile_image" fitHeight="102.0" fitWidth="132.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="file:/C:/Users/amirr/Desktop/AP/SBUgeram%20-%20project/logos/user1.png" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutY="226.0" prefHeight="329.0" prefWidth="400.0">
+         <children>
+            <ListView fx:id="user_postList" prefHeight="329.0" prefWidth="400.0" style="-fx-background-color: #ccdb86;" />
+         </children>
+      </AnchorPane>
+      <Button fx:id="follow_button" layoutX="225.0" layoutY="149.0" mnemonicParsing="false" onAction="#follow" prefHeight="25.0" prefWidth="150.0" text="Follow" textFill="#80909e">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="unfollow_button" layoutX="225.0" layoutY="149.0" mnemonicParsing="false" onAction="#unfollow" prefHeight="25.0" prefWidth="150.0" style="-fx-background-color: #dce0cd;" text="Unfollow" visible="false">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="17.0" layoutY="561.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="file:/C:/Users/amirr/Desktop/AP/SBUgeram%20-%20project/logos/imageedit_2_6207250110.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="homeButton" fitHeight="35.0" fitWidth="35.0" layoutX="17.0" layoutY="559.0" onMouseClicked="#homePage" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="file:/C:/Users/amirr/Desktop/AP/SBUgeram%20-%20project/logos/homebutton_unselected.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="uploadButton" fitHeight="35.0" fitWidth="35.0" layoutX="170.0" layoutY="561.0" onMouseClicked="#uploadPage" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="file:/C:/Users/amirr/Desktop/AP/SBUgeram%20-%20project/logos/imageedit_5_9221214218.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="250.0" layoutY="560.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="file:/C:/Users/amirr/Desktop/AP/SBUgeram%20-%20project/logos/heartbutton_selected.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="activityButton" fitHeight="35.0" fitWidth="35.0" layoutX="250.0" layoutY="559.0" onMouseClicked="#activityPage" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="file:/C:/Users/amirr/Desktop/AP/SBUgeram%20-%20project/logos/imageedit_2_8457055285.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="profileButton" fitHeight="45.0" fitWidth="45.0" layoutX="322.0" layoutY="553.0" onMouseClicked="#profilePage" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="file:/C:/Users/amirr/Desktop/AP/SBUgeram%20-%20project/logos/imageedit_4_6401240938.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="45.0" fitWidth="45.0" layoutX="322.0" layoutY="553.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="file:/C:/Users/amirr/Desktop/AP/SBUgeram%20-%20project/logos/imageedit_7_4893511055.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="45.0" fitWidth="45.0" layoutX="87.0" layoutY="557.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="file:/C:/Users/amirr/Desktop/AP/SBUgeram%20-%20project/logos/search%20Icon%20selected.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="45.0" fitWidth="45.0" layoutX="87.0" layoutY="557.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="file:/C:/Users/amirr/Desktop/AP/SBUgeram%20-%20project/logos/search%20Icon%20unselected.png" />
+         </image>
+      </ImageView>
+   </children>
+</Pane>

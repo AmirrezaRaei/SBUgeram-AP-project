@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.PageLoader;
+import Model.Profile;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -108,11 +109,12 @@ public class AccountSetting {
         profile_image.setImage(newImage);
     }
 
-    public void Done(ActionEvent actionEvent) {
+    public void Done(ActionEvent actionEvent) throws IOException {
         currentUser.setBio(bio_field.getText());
         currentUser.setProfileImage(profile_image);
         if (public_selected.isVisible())
             currentUser.setPrivate_page(false);
+        new PageLoader().load("Profile_page");
     }
 
     public void privet_account(ActionEvent actionEvent) {

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: #ccdb86;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.EditProfilePageController">
+   <children>
+      <Line endX="299.0" endY="3.814697265625E-6" layoutX="101.0" layoutY="40.0" startX="-100.0" />
+      <Label layoutX="57.0" layoutY="7.0" prefHeight="25.0" prefWidth="80.0" text="Edit profile">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Button fx:id="done_button" layoutX="363.0" layoutY="1.0" mnemonicParsing="false" onAction="#done" prefHeight="31.0" prefWidth="37.0" style="-fx-background-color: #ccdb86;" text="✔" textFill="#1053b1">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="cancel_button" layoutX="1.0" layoutY="5.0" mnemonicParsing="false" onAction="#cancel_action" style="-fx-background-color: #ccdb86;" text="❌">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <ImageView fx:id="profile_image" fitHeight="90.0" fitWidth="126.0" layoutX="130.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="file:/C:/Users/amirr/Desktop/AP/SBUgeram%20-%20project/logos/user1.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="changePhotoButton" layoutX="65.0" layoutY="161.0" mnemonicParsing="false" onAction="#change_photo" prefHeight="25.0" prefWidth="253.0" style="-fx-background-color: #ccdb86;" text="Change Profile Photo" textFill="#80909e">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Button>
+      <Label layoutX="20.0" layoutY="198.0" prefHeight="17.0" prefWidth="54.0" text="Name" />
+      <Line endX="267.0928955078125" endY="-1.52587890625E-5" layoutX="121.0" layoutY="246.0" startX="-100.0" />
+      <TextField fx:id="firstname_field" layoutX="19.0" layoutY="215.0" prefHeight="25.0" prefWidth="369.0" style="-fx-background-color: #ccdb86;">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </TextField>
+      <Label layoutX="20.0" layoutY="281.0" prefHeight="17.0" prefWidth="60.0" text="Username" />
+      <Line endX="267.0928955078125" endY="-1.52587890625E-5" layoutX="121.0" layoutY="329.0" startX="-100.0" />
+      <TextField fx:id="username_field" layoutX="21.0" layoutY="297.0" prefHeight="30.0" prefWidth="369.0" style="-fx-background-color: #ccdb86;">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </TextField>
+      <Line endX="267.0928955078125" endY="-1.52587890625E-5" layoutX="121.0" layoutY="419.0" startX="-100.0" />
+      <Label layoutX="20.0" layoutY="370.0" text="Bio" />
+      <TextField fx:id="bio_field" layoutX="20.0" layoutY="388.0" prefHeight="30.0" prefWidth="369.0" style="-fx-background-color: #ccdb86;">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </TextField>
+      <Button fx:id="logout_button" layoutX="105.0" layoutY="545.0" mnemonicParsing="false" onAction="#logout" prefHeight="25.0" prefWidth="182.0" text="Log Out" textFill="#b3504b" />
+      <Button fx:id="personalPage_button" layoutX="67.0" layoutY="479.0" mnemonicParsing="false" onAction="#personal_page" prefHeight="25.0" prefWidth="253.0" style="-fx-background-color: #ccdb86;" text="Personal Information Setting" textFill="#3192bd">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Button>
+      <Label fx:id="name_alert" alignment="CENTER" layoutX="97.0" layoutY="448.0" prefHeight="17.0" prefWidth="193.0" text="Name can not be empty!" textFill="#b3504b" visible="false" />
+      <Label fx:id="username_alert" alignment="CENTER" layoutX="107.0" layoutY="448.0" prefHeight="17.0" prefWidth="182.0" text="Username can not be empty!" textFill="#b3504b" visible="false" />
+   </children>
+</Pane>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: #ccdb86;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.LoginController">
+    <children>
+        <TextField fx:id="username_Field" layoutX="430.0" layoutY="300.0" prefHeight="45.0" prefWidth="149.0" promptText="username : Razer_a" style="-fx-background-color: #dce0cd;" />
+        <PasswordField fx:id="password_Field" layoutX="-173.0" layoutY="353.0" prefHeight="45.0" prefWidth="149.0" promptText="Password : 123qweasd" style="-fx-background-color: #dce0cd;" />
+        <Button fx:id="login_Button" layoutX="134.0" layoutY="618.0" mnemonicParsing="false" onAction="#Login" prefHeight="42.0" prefWidth="132.0" style="-fx-background-color: #dce0cd;" text="Login" textFill="#80909e">
+         <font>
+            <Font name="Badr-Bold" size="18.0" />
+         </font></Button>
+        <Label fx:id="password_alert" layoutX="40.0" layoutY="415.0" text="wrong password ! please enter correct password " textFill="#b3504b" visible="false">
+         <font>
+            <Font name="System Bold Italic" size="14.0" />
+         </font></Label>
+        <Label fx:id="username_alert" layoutX="35.0" layoutY="412.0" prefHeight="25.0" prefWidth="331.0" text="wrong username !! please enter correct username" textFill="#b3504b" visible="false">
+         <font>
+            <Font name="System Bold Italic" size="14.0" />
+         </font></Label>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="114.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="file:/C:/Users/amirr/Desktop/AP/SBUgeram%20-%20project/logos/87390.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="79.0" fitWidth="74.0" layoutX="-2.0" layoutY="527.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="file:/C:/Users/amirr/Desktop/AP/SBUgeram%20-%20project/logos/sbulogo.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="password_visible" layoutX="124.0" layoutY="353.0" prefHeight="45.0" prefWidth="149.0" promptText="Password : 123qweasd" style="-fx-background-color: #dce0cd;" visible="false" />
+      <CheckBox fx:id="password_icon" layoutX="-50.0" layoutY="366.0" mnemonicParsing="false" onAction="#show_password" prefHeight="25.0" prefWidth="10.0" />
+      <ImageView fx:id="hide_password" disable="true" fitHeight="25.0" fitWidth="40.0" layoutX="286.0" layoutY="366.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="file:/C:/Users/amirr/Desktop/AP/SBUgeram%20-%20project/logos/images%20(4).png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="showpassword" disable="true" fitHeight="25.0" fitWidth="25.0" layoutX="-50.0" layoutY="366.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="file:/C:/Users/amirr/Desktop/AP/SBUgeram%20-%20project/logos/images%20(5).png" />
+         </image>
+      </ImageView>
+      <Label contentDisplay="CENTER" layoutX="100.0" layoutY="506.0" prefHeight="17.0" prefWidth="132.0" text="Don't have an account?">
+         <font>
+            <Font name="System Italic" size="12.0" />
+         </font></Label>
+      <Hyperlink fx:id="sign_up_button" layoutX="227.0" layoutY="501.0" onAction="#sign_up" text="Sign up" textFill="#70cdcf" underline="true">
+         <font>
+            <Font name="System Bold Italic" size="14.0" />
+         </font>
+      </Hyperlink>
+    </children>
+</Pane>

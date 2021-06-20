@@ -1,6 +1,8 @@
 package Controller;
 
 import Model.PageLoader;
+import Model.Main;
+import Model.Profile;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,12 +12,15 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 
+import static Model.Main.currentUser;
+
 
 public class LoginController {
     @FXML
     // filed
     public TextField username_Field;
     public PasswordField password_Field;
+    public TextField password_visible;
     // button
     public Button login_Button;
     public CheckBox password_icon;
@@ -23,7 +28,6 @@ public class LoginController {
     // alert
     public Label password_alert;
     public Label username_alert;
-    public TextField password_visible;
     // security 
     public ImageView hide_password;
     public ImageView showpassword;
@@ -55,7 +59,7 @@ public class LoginController {
         showpassword.setVisible(true);
     }
 
-    public void Login(ActionEvent actionEvent) {
+    public void Login(ActionEvent actionEvent) throws IOException {
         // invisible all alert
         if (username_alert.isVisible() || password_alert.isVisible()) {
             username_alert.setVisible(false);
@@ -64,13 +68,16 @@ public class LoginController {
 
         String username = username_Field.getText();
         String password = password_Field.getText();
+        if (password_visible.isVisible())
+            password = password_visible.getText();
         if (!username.equalsIgnoreCase("Ali"))
             username_alert.setVisible(true);
         else if (username.equalsIgnoreCase("Ali") && !password.equalsIgnoreCase("Alavi"))
             password_alert.setVisible(true);
         else {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Hi Ali!\n welcome back");
-            alert.showAndWait();
+            currentUser.setUsername(username);
+            currentUser.setPassword(password);
+            new PageLoader().load("TimeLine");
         }
     }
 
