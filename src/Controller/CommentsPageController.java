@@ -33,6 +33,7 @@ public class CommentsPageController {
     @FXML
     public void initialize() {
         currentUserProfileImage.setImage(currentUser.profileImage.getImage());
+        postOwnerProfileImage.setImage(currentPost.getProfile().profileImage.getImage());
         if (!currentPost.getTitle().equalsIgnoreCase(""))
             title.setText(currentPost.getTitle());
         else title.setText(String.valueOf(currentPost.getProfile().getUsername()));
