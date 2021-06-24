@@ -28,6 +28,7 @@ public class signUpController {
     // security
     public ImageView test_done;
     public ImageView not_test;
+    public Label username_alert1; // For the username that exists
 
     public void signUp(ActionEvent actionEvent) throws IOException { // go to next page
         // invisible all alert

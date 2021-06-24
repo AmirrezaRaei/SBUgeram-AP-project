@@ -1,12 +1,12 @@
 package Model;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Main extends Application {
     public static Profile currentUser = new Profile();
@@ -15,18 +15,19 @@ public class Main extends Application {
     public static Comment currentComment = new Comment();
     public static Request currentRequest = new Request();
 
-    public static ArrayList<Post> posts = new ArrayList<>();
+    public static List<Post> posts = new CopyOnWriteArrayList<>();
 
     public static String lastPage;
-    public static ArrayList<Profile> users = new ArrayList<>();
+    public static Map<String, Profile> users = new ConcurrentHashMap<>();
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-       PageLoader.initStage(primaryStage);
+        PageLoader.initStage(primaryStage);
         new PageLoader().load("Login");
     }
 
     public static void main(String[] args) {
+        ClientNetwork.connectToServer();
         launch(args);
     }
 
@@ -35,7 +36,7 @@ public class Main extends Application {
         System.out.println("program opened");
     }
 
-    public void stop(){
-        System.out.printf("Good bye\n Comeback soon :)");
+    public void stop() {
+        System.out.print("Good bye\n Comeback soon :)");
     }
 }

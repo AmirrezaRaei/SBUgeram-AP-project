@@ -13,7 +13,6 @@ public class Post {
     protected ImageView imageView;
     private int like = 0;
     private int comment = 0;
-    private int repost = 0;
     public ArrayList<Profile> liked=new ArrayList<>();
     public ArrayList<Profile> reposted=new ArrayList<>();
     public ArrayList<Comment> comments = new ArrayList<>();
@@ -42,10 +41,6 @@ public class Post {
 
     public int getComment() {
         return comment;
-    }
-
-    public int getRepost() {
-        return repost;
     }
 
     public ArrayList<Profile> getLiked() {
@@ -80,16 +75,24 @@ public class Post {
         this.comment = comment;
     }
 
-    public void setRepost(int repost) {
-        this.repost = repost;
-    }
-
     public void setLiked(ArrayList<Profile> liked) {
         this.liked = liked;
     }
 
     public void setReposted(ArrayList<Profile> reposted) {
         this.reposted = reposted;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public ArrayList<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(ArrayList<Comment> comments) {
+        this.comments = comments;
     }
 
     //equals

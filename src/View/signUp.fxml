@@ -121,6 +121,7 @@
                </image>
             </ImageView>
             <Label fx:id="Robot_alert" alignment="CENTER" layoutX="141.0" layoutY="426.0" prefHeight="18.0" prefWidth="252.0" text="Your resonse was incorrect. please try again" textFill="#b3504b" visible="false" />
+            <Label fx:id="username_alert1" alignment="CENTER" layoutX="148.0" layoutY="247.0" prefHeight="18.0" prefWidth="238.0" text="This username is exist" textFill="#b3504b" visible="false" />
          </children>
       </AnchorPane>
   </items>

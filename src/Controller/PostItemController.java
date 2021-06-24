@@ -46,8 +46,8 @@ public class PostItemController {
         else
             title.setText(currentPost.getTitle() + " :");
 
-        if (currentPost.getRepost() != 0) // show number of repost
-            repost_count.setText(String.valueOf(currentPost.getRepost()));
+        if (currentPost.reposted.size() != 0) // show number of repost
+            repost_count.setText(String.valueOf(currentPost.getReposted().size()));
 
         likes_count.setText(currentPost.getLike() + "Likes");// show like count
 
@@ -88,8 +88,6 @@ public class PostItemController {
     public void repost(MouseEvent mouseEvent) {
         currentUser.myPosts.add(currentPost);
         currentPost.reposted.add(currentUser);
-        currentPost.setRepost((currentPost.getRepost() + 1));
-        repost_count.setText(String.valueOf(currentPost.getRepost()));
         repost.setVisible(false);
         unRepost.setVisible(true);
     }
@@ -116,8 +114,6 @@ public class PostItemController {
 
     public void unRepost(MouseEvent mouseEvent) {
         currentUser.getPosts().remove(currentPost);
-        currentPost.setRepost((currentPost.getRepost() - 1));
-        repost_count.setText(String.valueOf(currentPost.getRepost()));
         unRepost.setVisible(false);
         repost.setVisible(true);
     }

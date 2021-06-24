@@ -26,9 +26,6 @@ public class Profile extends Request {
     public Profile(String username, String password) { // use in sign ip and information page
         this.username = username;
         this.password = password ;
-        this.firstname = "";
-        this.lastname = "";
-        this.emailAddress = "";
         this.private_page = true;
         this.bio = "";
     }
@@ -150,5 +147,10 @@ public class Profile extends Request {
 
     public void setPosts(ArrayList<Post> posts) {
         this.myPosts = posts;
+    }
+
+    public Profile authenticate(String username,String password){
+        if(this.username.equals(username) && this.password.equals(password)) return this;
+        return null;
     }
 }

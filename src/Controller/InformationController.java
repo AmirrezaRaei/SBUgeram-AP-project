@@ -57,11 +57,11 @@ public class InformationController {
         imageCounter = getRandomNumberUsingNextInt(0, 5);
         visibleImage();
         //auto fill
-        if (!currentUser.getFirstname().equals(""))
+        if (currentUser.getFirstname() != null)
             first_name.setText(currentUser.getFirstname());
-        if (!currentUser.getLastname().equals(""))
+        if (currentUser.getLastname() != null)
             last_name.setText(currentUser.getLastname());
-        if (!currentUser.getEmailAddress().equals(""))
+        if (currentUser.getEmailAddress() != null)
             Email_field.setText(currentUser.getEmailAddress());
         if (!(currentUser.getAge() == 0))
             age_field.setText(Integer.toString(currentUser.getAge()));

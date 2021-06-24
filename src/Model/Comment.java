@@ -1,11 +1,11 @@
 package Model;
 
 public class Comment {
-    private Profile writer;
+    private Profile writer = new Profile();
     private String comment;
 
     public Comment(Profile currentUser, String text) {
-        this.writer =currentUser;
+        this.writer = currentUser;
         this.comment = text;
     }
 
