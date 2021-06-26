@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="400.0" style="-fx-background-color: #dce0cd;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fx:id="profile_image" fitHeight="76.0" fitWidth="101.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="file:/C:/Users/amirr/Desktop/AP/SBUgeram%20-%20project/logos/user1.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="username" layoutX="133.0" layoutY="14.0" onMouseClicked="#profile" prefHeight="29.0" prefWidth="235.0" textFill="#80909e">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="firstname" layoutX="133.0" layoutY="50.0" prefHeight="30.0" prefWidth="235.0" />
+   </children>
+</AnchorPane>
