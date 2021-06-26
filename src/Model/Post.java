@@ -1,22 +1,24 @@
 package Model;
 
-import javafx.scene.image.ImageView;
+import javafx.scene.image.Image;
 
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Map;
+import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.CopyOnWriteArrayList;
 
-public class Post {
-    protected Profile profile;
+public class Post implements Serializable,Comparable {
+    protected Profile profile = new Profile();
     protected String title;
     protected String description = "";
-    protected ImageView imageView;
+    protected byte[] image;
     private int like = 0;
     private int comment = 0;
-    public ArrayList<Profile> liked=new ArrayList<>();
-    public ArrayList<Profile> reposted=new ArrayList<>();
-    public ArrayList<Comment> comments = new ArrayList<>();
-
+    public List<Profile> liked=new CopyOnWriteArrayList<>();
+    public List<Profile> reposted=new CopyOnWriteArrayList<>();
+    public List<Comment> comments = new CopyOnWriteArrayList<>();
+    public List<Profile> share = new CopyOnWriteArrayList<>();
 
     // getter
     public Profile getProfile() {
@@ -31,8 +33,8 @@ public class Post {
         return description;
     }
 
-    public ImageView getImageView() {
-        return imageView;
+    public byte[] getImage() {
+        return image;
     }
 
     public int getLike() {
@@ -43,11 +45,11 @@ public class Post {
         return comment;
     }
 
-    public ArrayList<Profile> getLiked() {
+    public List<Profile> getLiked() {
         return liked;
     }
 
-    public ArrayList<Profile> getReposted() {
+    public List<Profile> getReposted() {
         return reposted;
     }
     // setter
@@ -63,8 +65,8 @@ public class Post {
         this.description = description;
     }
 
-    public void setImageView(ImageView imageView) {
-        this.imageView = imageView;
+    public void setImage(byte[] imageView) {
+        this.image = imageView;
     }
 
     public void setLike(int like) {
@@ -87,7 +89,7 @@ public class Post {
         this.description = description;
     }
 
-    public ArrayList<Comment> getComments() {
+    public List<Comment> getComments() {
         return comments;
     }
 
@@ -107,5 +109,10 @@ public class Post {
     @Override
     public int hashCode() {
         return Objects.hash(title);
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        return 0;
     }
 }

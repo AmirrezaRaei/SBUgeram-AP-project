@@ -19,6 +19,7 @@ public class ActivityPageController {
     public ImageView homeButton;
     public ImageView uploadButton;
     public ImageView profileButton;
+    public ImageView searchButton;
 
     @FXML
     public void initialize(){
@@ -35,5 +36,10 @@ public class ActivityPageController {
 
     public void profilePage(MouseEvent mouseEvent) throws IOException {
         new PageLoader().load("Profile_page");
+    }
+
+
+    public void searchPage(MouseEvent mouseEvent) throws IOException {
+        new PageLoader().load("Search_page");
     }
 }

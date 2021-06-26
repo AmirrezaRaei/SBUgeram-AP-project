@@ -6,7 +6,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane fx:id="root" prefHeight="100.0" prefWidth="400.0" style="-fx-background-color: #ccdb86;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fx:id="userProfileImage" fitHeight="100.0" fitWidth="115.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
@@ -14,7 +13,7 @@
             <Image url="file:/C:/Users/amirr/Desktop/AP/SBUgeram%20-%20project/logos/user1.png" />
          </image>
       </ImageView>
-      <Label fx:id="user_username" layoutX="101.0" layoutY="5.0" prefHeight="26.0" prefWidth="158.0">
+      <Label fx:id="user_username" layoutX="101.0" layoutY="5.0" onMouseClicked="#profile_page" prefHeight="26.0" prefWidth="158.0">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>

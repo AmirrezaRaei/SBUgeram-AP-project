@@ -1,7 +1,6 @@
 package Controller;
 
-import Model.PageLoader;
-import Model.Profile;
+import Model.*;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,8 +15,11 @@ import javafx.stage.Popup;
 import javafx.util.Duration;
 
 import java.io.*;
+import java.util.HashMap;
+import java.util.Map;
 
 import static Model.Main.currentUser;
+import static Model.Main.profiles;
 
 public class AccountSetting {
     //button
@@ -42,79 +44,105 @@ public class AccountSetting {
     public Line bio_Line;
     public TextField bio_field;
 
+    public static String path;
+    public static byte[] image;
+
     @FXML
-    public void initialize(){
+    public void initialize() {
         TranslateTransition transition;
         //profile image
-        transition = new TranslateTransition(Duration.millis(2000),profile_image);
+        transition = new TranslateTransition(Duration.millis(2000), profile_image);
         transition.setByY(262);
         transition.playFromStart();
         // private selected
-        transition = new TranslateTransition(Duration.millis(2750),private_select);
+        transition = new TranslateTransition(Duration.millis(2750), private_select);
         transition.setByY(261);
         transition.playFromStart();
         // public unselected
-        transition = new TranslateTransition(Duration.millis(2750),public_unselected);
+        transition = new TranslateTransition(Duration.millis(2750), public_unselected);
         transition.setByY(261);
         transition.playFromStart();
         //account privacy label
-        transition = new TranslateTransition(Duration.millis(2750),Account_Privacy);
+        transition = new TranslateTransition(Duration.millis(2750), Account_Privacy);
         transition.setByY(261);
         transition.playFromStart();
         // private text
-        transition = new TranslateTransition(Duration.millis(2750),private_text);
+        transition = new TranslateTransition(Duration.millis(2750), private_text);
         transition.setByY(261);
         transition.playFromStart();
         //private button
-        transition = new TranslateTransition(Duration.millis(2800),Private_button);
+        transition = new TranslateTransition(Duration.millis(2800), Private_button);
         transition.setByY(261);
         transition.playFromStart();
         // public text
-        transition = new TranslateTransition(Duration.millis(2750),public_text);
+        transition = new TranslateTransition(Duration.millis(2750), public_text);
         transition.setByY(261);
         transition.playFromStart();
         // public button
-        transition = new TranslateTransition(Duration.millis(2800),Public_button);
+        transition = new TranslateTransition(Duration.millis(2800), Public_button);
         transition.setByY(261);
         transition.playFromStart();
         // bio label
-        transition = new TranslateTransition(Duration.millis(2000),bio_text);
+        transition = new TranslateTransition(Duration.millis(2000), bio_text);
         transition.setByY(499);
         transition.playFromStart();
         // bio field
-        transition = new TranslateTransition(Duration.millis(2000),bio_field);
+        transition = new TranslateTransition(Duration.millis(2000), bio_field);
         transition.setByY(499);
         transition.playFromStart();
         // bio line
-        transition = new TranslateTransition(Duration.millis(2000),bio_Line);
+        transition = new TranslateTransition(Duration.millis(2000), bio_Line);
         transition.setByY(499);
         transition.playFromStart();
 
         // Done button
-        transition = new TranslateTransition(Duration.millis(2300),Done_button);
+        transition = new TranslateTransition(Duration.millis(2300), Done_button);
         transition.setByX(-224);
         transition.playFromStart();
         // Back button
-        transition = new TranslateTransition(Duration.millis(2300),back_button);
+        transition = new TranslateTransition(Duration.millis(2300), back_button);
         transition.setByX(224);
         transition.playFromStart();
     }
 
     public void changeProfileImage(ActionEvent actionEvent) throws IOException {
-        FileChooser fileChooser=new FileChooser();
-        File file=fileChooser.showOpenDialog(new Popup());
-        FileInputStream fileInputStream=new FileInputStream(file);
-        byte[] bytes=fileInputStream.readAllBytes();
-        Image newImage=new Image(new ByteArrayInputStream(bytes));
-        profile_image.setImage(newImage);
+        FileChooser fileChooser = new FileChooser();
+        File file = fileChooser.showOpenDialog(new Popup());
+        if (file != null) {
+            FileInputStream fileInputStream = new FileInputStream(file);
+            byte[] bytes = fileInputStream.readAllBytes();
+            Image newImage = new Image(new ByteArrayInputStream(bytes));
+            image = bytes;
+            path = file.getAbsolutePath();
+            profile_image.setImage(newImage);
+        }
     }
 
     public void Done(ActionEvent actionEvent) throws IOException {
-        currentUser.setBio(bio_field.getText());
-        currentUser.setProfileImage(profile_image);
-        if (public_selected.isVisible())
-            currentUser.setPrivate_page(false);
-        new PageLoader().load("Profile_page");
+        Map<String, String> help = new HashMap<>();
+        if (image != null )
+            ClientAPI.setProfile(currentUser, image, path);
+        else ClientAPI.setProfile(currentUser,null,null);
+        help.put("firstname", currentUser.getFirstname());
+        help.put("age", String.valueOf(currentUser.getAge()));
+        help.put("bio", bio_field.getText());
+        if (currentUser.getLastname() != null)
+            help.put("lastname", currentUser.getLastname());
+        if (currentUser.getEmailAddress() != null)
+            help.put("emailAddress", currentUser.getEmailAddress());
+        if (currentUser.getGender() != Gender.unselected)
+            help.put("gender", String.valueOf(currentUser.getGender()));
+        if (currentUser.getPhone() != null)
+            help.put("phone", currentUser.getPhone());
+        ClientAPI.setInformation(currentUser, help);
+        Main.update();
+        ClientAPI.getAllPosts(currentUser);
+        for (Profile profile :
+                profiles.values()) {
+            ClientAPI.getMyPosts(profile);
+        }
+        ClientAPI.getAllProfiles(currentUser);
+        new PageLoader().load("TimeLine");
     }
 
     public void privet_account(ActionEvent actionEvent) {
@@ -128,7 +156,7 @@ public class AccountSetting {
     }
 
     public void public_account(ActionEvent actionEvent) {
-        if (private_select.isVisible()){
+        if (private_select.isVisible()) {
             private_select.setVisible(false);
             private_Unselected.setVisible(true);
             public_selected.setVisible(true);

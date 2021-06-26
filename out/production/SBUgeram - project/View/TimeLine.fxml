@@ -63,7 +63,7 @@
             <Image url="file:/C:/Users/amirr/Desktop/AP/SBUgeram%20-%20project/logos/search%20Icon%20selected.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="searchButton" fitHeight="45.0" fitWidth="45.0" layoutX="87.0" layoutY="555.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="searchButton" fitHeight="45.0" fitWidth="45.0" layoutX="87.0" layoutY="555.0" onMouseClicked="#searchPage" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="file:/C:/Users/amirr/Desktop/AP/SBUgeram%20-%20project/logos/search%20Icon%20unselected.png" />
          </image>

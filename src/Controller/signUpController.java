@@ -1,15 +1,16 @@
 package Controller;
 
+import Model.ClientAPI;
 import Model.PageLoader;
 import Model.Profile;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
 
 import static Model.Main.currentUser;
+import static Model.Main.profiles;
 
 public class signUpController {
     // field
@@ -43,7 +44,7 @@ public class signUpController {
 
         if (username.length() < 3)
             username_alert.setVisible(true);
-        else if (password.length() < 5)
+        else if (password.length() < 8)
             password_alert.setVisible(true);
         else if (!password.equalsIgnoreCase(confirm))
             confirm_password_alert.setVisible(true);
@@ -51,6 +52,8 @@ public class signUpController {
             Robot_alert.setVisible(true);
         else if ((password.equalsIgnoreCase(confirm))) {
             currentUser = new Profile(username, password);
+            ClientAPI.signup(currentUser);
+            profiles.put(username , currentUser);
             new PageLoader().load("usernameInformation");
         }
     }

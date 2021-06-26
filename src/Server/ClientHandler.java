@@ -95,6 +95,36 @@ public class ClientHandler implements Runnable {
                     case setComment:
                         output = API.setComment(input);
                         break;
+                        //extra
+                    case changeProfile:
+                        output = API.editProfile(input);
+                        break;
+                    case getNumbers:
+                        output = API.getNumbers(input);
+                        break;
+                    case getProfilesNumber:
+                        output = API.getProfilesNumber(input);
+                        break;
+                    case getPostDetails:
+                        output = API.getPostDetails(input);
+                        break;
+                    case timelineUpdate:
+                        output = API.timelineUpdate(input);
+                        break;
+                    case getLikes:
+                        output = API.getLikes(input);
+                        break;
+                    case getReposts:
+                        output =API.getReposts(input);
+                        break;
+                    case getFollowers:
+                        output = API.getFollowers(input);
+                        break;
+                    case getFollowings:
+                        output = API.getFollowing(input);
+                        break;
+                    default:
+                        throw new IllegalStateException("Unexpected value: " + action);
                 }
                 objectOutputStream.writeObject(output);
                 objectOutputStream.flush();

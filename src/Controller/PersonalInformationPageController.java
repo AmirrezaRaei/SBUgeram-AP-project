@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.ClientAPI;
 import Model.PageLoader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -7,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
+import java.util.Map;
 
 import static Model.Main.currentUser;
 
@@ -19,10 +21,16 @@ public class PersonalInformationPageController {
     public TextField gender_field;
     @FXML
     public void initialize(){
-        email_field.setText(currentUser.getEmailAddress());
-        lastname_field.setText(currentUser.getLastname());
-        phone_field.setText(currentUser.getPhone());
-        gender_field.setText(String.valueOf(currentUser.getGender()));
+        Map<String,String> information = ClientAPI.getInformation(currentUser);
+        assert information != null;
+        if (information.get("emailAddress") != null)
+            email_field.setText(information.get("emailAddress"));
+        if (information.get("lastname") != null)
+            lastname_field.setText(information.get("lastname"));
+        if (information.get("phone") != null)
+            phone_field.setText(information.get("phone"));
+        if (!information.get("gender").equals("unselected"))
+            gender_field.setText(information.get("gender"));
     }
     public void last_page(ActionEvent actionEvent) throws IOException {
         currentUser.setEmailAddress(email_field.getText());

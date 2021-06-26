@@ -1,5 +1,7 @@
 package Controller;
 
+import Model.ClientAPI;
+import Model.Gender;
 import Model.PageLoader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,9 +17,10 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import static Model.Main.currentUser;
-import static Model.Main.lastPage;
 
 public class EditProfilePageController {
     //button
@@ -35,13 +38,18 @@ public class EditProfilePageController {
     public Label username_alert;
 
     public ImageView profile_image;
-
+    String path;
+    byte[] image;
     @FXML
     public void initialize(){
-        firstname_field.setText(currentUser.getFirstname());
+        Map<String,String> information = ClientAPI.getInformation(currentUser);
+        assert information != null;
+        firstname_field.setText(information.get("firstname"));
         username_field.setText(currentUser.getUsername());
-        bio_field.setText(currentUser.getBio());
-        profile_image.setImage(currentUser.profileImage.getImage());
+        bio_field.setText(information.get("bio"));
+        byte[] nImage = ClientAPI.getProfile(currentUser);
+        if (nImage != null)
+            profile_image.setImage(new Image(new ByteArrayInputStream(nImage)));
     }
 
     public void change_photo(ActionEvent actionEvent) throws IOException {
@@ -50,10 +58,13 @@ public class EditProfilePageController {
         FileInputStream fileInputStream=new FileInputStream(file);
         byte[] bytes=fileInputStream.readAllBytes();
         Image newImage=new Image(new ByteArrayInputStream(bytes));
+        path = file.getAbsolutePath();
+        image = bytes;
         profile_image.setImage(newImage);
     }
 
     public void logout(ActionEvent actionEvent) throws IOException {
+        ClientAPI.logout(currentUser);
         new PageLoader().load("Login");
     }
 
@@ -61,7 +72,8 @@ public class EditProfilePageController {
         currentUser.setFirstname(firstname_field.getText());
         currentUser.setUsername(username_field.getText());
         currentUser.setBio(bio_field.getText());
-        currentUser.setProfileImage(profile_image);
+        if (image != null)
+            ClientAPI.changeProfile(currentUser,image,path);
         new PageLoader().load("PersonalInformationPage");
     }
 
@@ -77,10 +89,22 @@ public class EditProfilePageController {
         else if (username_field.getText().equalsIgnoreCase(""))
             username_alert.setVisible(true);
         else {
-            currentUser.setFirstname(firstname_field.getText());
-            currentUser.setUsername(username_field.getText());
-            currentUser.setBio(bio_field.getText());
-            currentUser.setProfileImage(profile_image);
+            if (image != null)
+                ClientAPI.changeProfile(currentUser,image,path);
+            Map<String ,String> information = new HashMap<>();
+//            information.put("username",username_field.getText());
+            information.put("firstname",firstname_field.getText());
+            information.put("bio",bio_field.getText());
+            information.put("age", String.valueOf(currentUser.getAge()));
+            if (currentUser.getLastname() != null)
+                information.put("lastname",currentUser.getLastname());
+            if (currentUser.getEmailAddress() != null)
+                information.put("emailAddress",currentUser.getEmailAddress());
+            if (currentUser.getGender() != Gender.unselected)
+                information.put("gender" , String.valueOf(currentUser.getGender()));
+            if (currentUser.getPhone() != null)
+                information.put("phone",currentUser.getPhone());
+            ClientAPI.setInformation(currentUser,information);
             new PageLoader().load("Profile_page");
         }
     }

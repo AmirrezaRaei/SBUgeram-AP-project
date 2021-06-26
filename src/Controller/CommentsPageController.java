@@ -1,10 +1,7 @@
 package Controller;
 
-import Model.Comment;
+import Model.*;
 import Model.Item.CommentsItem;
-import Model.Item.PostItem;
-import Model.Main;
-import Model.PageLoader;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,12 +9,17 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
-import static Model.Main.*;
+import static Model.Main.currentUser;
+import static Model.Main.targetPost;
 
 public class CommentsPageController {
 
@@ -30,15 +32,24 @@ public class CommentsPageController {
     public Label title;
     public ImageView send_logo;
 
+    public Comment currentComment = new Comment();
+    List<Comment> commentList = new ArrayList<>();
+
+    byte [] image;
     @FXML
     public void initialize() {
-        currentUserProfileImage.setImage(currentUser.profileImage.getImage());
-        postOwnerProfileImage.setImage(currentPost.getProfile().profileImage.getImage());
-        if (!currentPost.getTitle().equalsIgnoreCase(""))
-            title.setText(currentPost.getTitle());
-        else title.setText(String.valueOf(currentPost.getProfile().getUsername()));
-        desc.setText(currentPost.getDescription());
-        comments_list.setItems(FXCollections.observableArrayList(currentPost.comments));
+        Profile profile = targetPost.getProfile();
+        commentList = ClientAPI.getComments(targetPost);
+        image = ClientAPI.getProfile(profile);
+        if (image != null)
+            postOwnerProfileImage.setImage(new Image(new ByteArrayInputStream(image)));
+        image = ClientAPI.getProfile(currentUser);
+        if (image != null)
+            currentUserProfileImage.setImage(new Image(new ByteArrayInputStream(image)));
+
+        title.setText(targetPost.getTitle());
+        desc.setText(targetPost.getDescription());
+        comments_list.setItems(FXCollections.observableArrayList(commentList));
         comments_list.setCellFactory(PostList -> new CommentsItem());
     }
 
@@ -47,20 +58,28 @@ public class CommentsPageController {
     }
 
     public void add_comment(ActionEvent actionEvent) {
-        currentComment = new Comment(currentUser,addComment_field.getText());
-        currentPost.comments.add(currentComment);
-        comments_list.setItems(FXCollections.observableArrayList(currentPost.comments));
-        comments_list.setCellFactory(PostList -> new CommentsItem());
-        currentComment = new Comment();
+        Comment currentComment = new Comment();
+        currentComment.setComment(addComment_field.getText());
+        currentComment.setWriter(currentUser);
+        commentList = ClientAPI.setComment(PostItemController.temp,currentUser,currentComment);
+        commentList = ClientAPI.getComments(PostItemController.temp);
+        assert commentList != null;
+        commentList.add(currentComment);
+        comments_list.setItems(FXCollections.observableArrayList(commentList));
+        comments_list.setCellFactory(commentList -> new CommentsItem());
         addComment_field.setText("");
     }
 
     public void send_comment(MouseEvent mouseEvent) {
-        currentComment = new Comment(currentUser,addComment_field.getText());
-        currentPost.comments.add(currentComment);
-        comments_list.setItems(FXCollections.observableArrayList(currentPost.comments));
-        comments_list.setCellFactory(PostList -> new CommentsItem());
         currentComment = new Comment();
+        currentComment.setWriter(currentUser);
+        currentComment.setComment(addComment_field.getText());
+        commentList = ClientAPI.setComment(targetPost,currentUser,currentComment);
+        commentList = ClientAPI.getComments(targetPost);
+        assert commentList != null;
+        commentList.add(currentComment);
+        comments_list.setItems(FXCollections.observableArrayList(commentList));
+        comments_list.setCellFactory(commentList -> new CommentsItem());
         addComment_field.setText("");
     }
 }

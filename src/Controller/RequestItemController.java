@@ -1,15 +1,15 @@
 package Controller;
 
-import Model.Item.RequestItem;
 import Model.PageLoader;
 import Model.Request;
-import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 
 import static Model.Main.*;
@@ -28,7 +28,7 @@ public class RequestItemController {
     }
 
     public AnchorPane init() {
-        user_image.setImage(currentRequest.getName().profileImage.getImage());
+        user_image.setImage(new Image(new ByteArrayInputStream(currentRequest.getName().profileImage)));
         request_text.setText(currentRequest.getName().getUsername() + "requested to follow you");
         return root;
     }

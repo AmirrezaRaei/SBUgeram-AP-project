@@ -19,11 +19,7 @@
          <font>
             <Font name="Badr-Bold" size="18.0" />
          </font></Button>
-        <Label fx:id="password_alert" layoutX="40.0" layoutY="415.0" text="wrong password ! please enter correct password " textFill="#b3504b" visible="false">
-         <font>
-            <Font name="System Bold Italic" size="14.0" />
-         </font></Label>
-        <Label fx:id="username_alert" layoutX="35.0" layoutY="412.0" prefHeight="25.0" prefWidth="331.0" text="wrong username !! please enter correct username" textFill="#b3504b" visible="false">
+        <Label fx:id="password_alert" layoutX="99.0" layoutY="414.0" prefHeight="20.0" prefWidth="208.0" text="wrong password or Username!" textFill="#b3504b" visible="false">
          <font>
             <Font name="System Bold Italic" size="14.0" />
          </font></Label>

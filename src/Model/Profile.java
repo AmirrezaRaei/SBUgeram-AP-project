@@ -1,32 +1,49 @@
 package Model;
 
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+import java.util.concurrent.ConcurrentSkipListSet;
+import java.util.concurrent.CopyOnWriteArrayList;
 
-public class Profile extends Request {
+public class Profile implements Serializable,Comparable {
     // user information
     protected String username;
     protected String password;
-    protected String firstname ;
+    protected String firstname;
     protected String lastname;
     protected String emailAddress;
-    protected Gender gender = Gender.unselected;
+    protected Gender gender;
     protected int age = 0;
     protected String phone;
-    public ImageView profileImage;
-    protected boolean private_page;
+    public byte[] profileImage;
+    //    protected boolean private_page;
     protected String bio;
-    public ArrayList<Post> myPosts = new ArrayList<>();
-    public ArrayList<Profile> followers = new ArrayList<>();
-    public ArrayList<Profile> following = new ArrayList<>();
+    public Set<Post> myPosts = new ConcurrentSkipListSet<>();
+    public List<Profile> followers = new CopyOnWriteArrayList<>();
+    public List<Profile> following = new CopyOnWriteArrayList<>();
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
     public ArrayList<Request> requested = new ArrayList<>();
+    private String path;
 
 
     public Profile(String username, String password) { // use in sign ip and information page
         this.username = username;
-        this.password = password ;
-        this.private_page = true;
+        this.password = password;
+        this.gender = Gender.unselected;
+//        this.private_page = true;
         this.bio = "";
     }
 
@@ -67,7 +84,7 @@ public class Profile extends Request {
         return age;
     }
 
-    public ImageView getProfileImage() {
+    public byte[] getProfileImage() {
         return profileImage;
     }
 
@@ -75,19 +92,19 @@ public class Profile extends Request {
         return phone;
     }
 
-    public boolean getPrivate_page() {
-        return private_page;
-    }
-
-    public boolean isPrivate_page() {
-        return private_page;
-    }
+//    public boolean getPrivate_page() {
+//        return private_page;
+//    }
+//
+//    public boolean isPrivate_page() {
+//        return private_page;
+//    }
 
     public String getBio() {
         return bio;
     }
 
-    public ArrayList<Post> getPosts() {
+    public Set<Post> getPosts() {
         return myPosts;
     }
 
@@ -116,7 +133,7 @@ public class Profile extends Request {
         this.gender = gender;
     }
 
-    public void setGender(String gender){
+    public void setGender(String gender) {
         if (gender.equals("male"))
             this.gender = Gender.male;
         else if (gender.equals("female"))
@@ -129,7 +146,7 @@ public class Profile extends Request {
         this.age = age;
     }
 
-    public void setProfileImage(ImageView profileImage) {
+    public void setProfileImage(byte [] profileImage) {
         this.profileImage = profileImage;
     }
 
@@ -137,20 +154,25 @@ public class Profile extends Request {
         this.phone = phone;
     }
 
-    public void setPrivate_page(boolean private_page) {
-        this.private_page = private_page;
-    }
+//    public void setPrivate_page(boolean private_page) {
+//        this.private_page = private_page;
+//    }
 
     public void setBio(String bio) {
         this.bio = bio;
     }
 
-    public void setPosts(ArrayList<Post> posts) {
+    public void setPosts(Set<Post> posts) {
         this.myPosts = posts;
     }
 
-    public Profile authenticate(String username,String password){
-        if(this.username.equals(username) && this.password.equals(password)) return this;
+    public Profile authenticate(String username, String password) {
+        if (this.username.equals(username) && this.password.equals(password)) return this;
         return null;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        return 0;
     }
 }

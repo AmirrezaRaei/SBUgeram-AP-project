@@ -1,8 +1,7 @@
 package Controller;
 
+import Model.*;
 import Model.Item.PostItem;
-import Model.PageLoader;
-import Model.Post;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
@@ -10,7 +9,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import static Model.Main.*;
 
 public class TimeLineController {
@@ -27,26 +30,44 @@ public class TimeLineController {
     @FXML
     public void initialize() {
         lastPage = "TimeLine";
-        postList.setItems(FXCollections.observableArrayList(posts));
+        Main.update();
+        ClientAPI.getAllProfiles(currentUser);
+        for (Profile profile :
+                profiles.values()) {
+            ClientAPI.getAllOfMyPosts(profile);
+        }
+        List<Post> post_List = ClientAPI.getAllPosts(currentUser);
+        Set<Post> postSet = new HashSet<>();
+        for (Post post : post_List){
+            postSet.add(post);
+
+//            List<String> pu = post.share.stream().map(temp -> temp.getUsername())
+//                    .collect(Collectors.toList());
+        }
+        postList.setItems(FXCollections.observableArrayList(postSet));
         postList.setCellFactory(PostList -> new PostItem());
     }
 
     public void ProfilePage(MouseEvent mouseEvent) throws IOException {
-        lastPage = "TimeLine";
+//        lastPage = "TimeLine";
         new PageLoader().load("Profile_page");
     }
 
     public void activityPage(MouseEvent mouseEvent) throws IOException {
-        lastPage = "TimeLine";
+//        lastPage = "TimeLine";
         new PageLoader().load("ActivityPage");
     }
 
     public void uploadNewPost(MouseEvent mouseEvent) throws IOException {
-        lastPage = "TimeLine";
+//        lastPage = "TimeLine";
         new PageLoader().load("UploadNewPost");
     }
 
     public void refresh(MouseEvent mouseEvent) throws IOException {
         new PageLoader().load("TimeLine");
+    }
+
+    public void searchPage(MouseEvent mouseEvent) throws IOException {
+        new PageLoader().load("Search_page");
     }
 }

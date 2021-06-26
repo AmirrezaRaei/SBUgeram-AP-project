@@ -1,6 +1,8 @@
 package Common;
 
-public enum Action {
+import java.io.Serializable;
+
+public enum Action implements Serializable {
     login,
     logout,
     signup,
@@ -10,7 +12,6 @@ public enum Action {
     getProfiles,
     setProfile,
     getProfile,
-    changeProfile,
     follow,
     unfollow,
     setInformation,
@@ -21,5 +22,14 @@ public enum Action {
     unReposted,
     setComment,
     getComment,
-
+    //extra
+    changeProfile,
+    getFollowers,
+    getFollowings,
+    getNumbers,
+    getProfilesNumber,
+    getPostDetails,
+    timelineUpdate,
+    getLikes,
+    getReposts,
 }

@@ -10,15 +10,16 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Main extends Application {
     public static Profile currentUser = new Profile();
-    public static Profile visitCurrentUser = new Profile();// to see other user profile
-    public static Post currentPost = new Post();
-    public static Comment currentComment = new Comment();
+    public static Profile targetUser;// to see other user profile
+    public static Post targetPost;
+//    public static Post currentPost = new Post();
+//    public static Comment currentComment = new Comment();
     public static Request currentRequest = new Request();
 
     public static List<Post> posts = new CopyOnWriteArrayList<>();
 
     public static String lastPage;
-    public static Map<String, Profile> users = new ConcurrentHashMap<>();
+    public static Map<String, Profile> profiles = new ConcurrentHashMap<>();
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -31,12 +32,28 @@ public class Main extends Application {
         launch(args);
     }
 
-    @Override
-    public void init() {
-        System.out.println("program opened");
+    public static void update() {
+        Map<String, Profile> profileMap;
+        if (ClientAPI.getPosts(currentUser) != null)
+            posts = new CopyOnWriteArrayList<>(ClientAPI.getAllPosts(currentUser));
+        profileMap = ClientAPI.getAllProfiles(currentUser);
+        if (profileMap != null)
+            profiles = profileMap;
+        for (Profile profile :
+                profiles.values()) {
+            if (ClientAPI.getAllOfMyPosts(profile) != null) {
+                profile.getPosts().clear();
+                profile.getPosts().addAll(ClientAPI.getAllOfMyPosts(profile));
+            }
+        }
     }
 
-    public void stop() {
-        System.out.print("Good bye\n Comeback soon :)");
+        @Override
+        public void init () {
+            System.out.println("program opened");
+        }
+
+        public void stop () {
+            System.out.print("Good bye\n Comeback soon :)");
+        }
     }
-}

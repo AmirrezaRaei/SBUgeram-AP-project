@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.ClientAPI;
 import Model.PageLoader;
 import Model.Main;
 import Model.Profile;
@@ -27,33 +28,31 @@ public class LoginController {
     public Hyperlink sign_up_button;
     // alert
     public Label password_alert;
-    public Label username_alert;
     // security 
     public ImageView hide_password;
     public ImageView showpassword;
 
 
-
     @FXML
-    public void initialize(){
+    public void initialize() {
         TranslateTransition transition;
         // username filed
-        transition = new TranslateTransition(Duration.millis(3000),username_Field);
+        transition = new TranslateTransition(Duration.millis(3000), username_Field);
         transition.setByX(-305);
         transition.playFromStart();
         // password filed
-        transition = new TranslateTransition(Duration.millis(3000),password_Field);
+        transition = new TranslateTransition(Duration.millis(3000), password_Field);
         transition.setByX(297);
         transition.playFromStart();
         //login button
-        transition = new TranslateTransition(Duration.millis(4000),login_Button);
+        transition = new TranslateTransition(Duration.millis(4000), login_Button);
         transition.setByY(-173);
         transition.playFromStart();
 
-        transition = new TranslateTransition(Duration.millis(3500),showpassword);
+        transition = new TranslateTransition(Duration.millis(3500), showpassword);
         transition.setByX(336);
         transition.playFromStart();
-        transition = new TranslateTransition(Duration.millis(3500),password_icon);
+        transition = new TranslateTransition(Duration.millis(3500), password_icon);
         transition.setByX(336);
         transition.playFromStart();
         showpassword.setVisible(true);
@@ -61,29 +60,28 @@ public class LoginController {
 
     public void Login(ActionEvent actionEvent) throws IOException {
         // invisible all alert
-        if (username_alert.isVisible() || password_alert.isVisible()) {
-            username_alert.setVisible(false);
+        if (password_alert.isVisible()) {
             password_alert.setVisible(false);
         }
-
+        Profile profile;
         String username = username_Field.getText();
         String password = password_Field.getText();
         if (password_visible.isVisible())
             password = password_visible.getText();
-        if (!username.equalsIgnoreCase("Ali"))
-            username_alert.setVisible(true);
-        else if (username.equalsIgnoreCase("Ali") && !password.equalsIgnoreCase("Alavi"))
+        profile = ClientAPI.login(username, password);
+        if (profile == null)
             password_alert.setVisible(true);
         else {
-            currentUser.setUsername(username);
-            currentUser.setPassword(password);
+            currentUser = profile;
+            Main.update();
+            ClientAPI.getAllPosts(currentUser);
             new PageLoader().load("TimeLine");
         }
     }
 
 
     public void show_password(ActionEvent actionEvent) {
-        if (!password_visible.isVisible()){
+        if (!password_visible.isVisible()) {
             password_visible.setVisible(true);
             password_visible.setText(password_Field.getText());
             showpassword.setVisible(false);

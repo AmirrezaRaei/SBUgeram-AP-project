@@ -1,18 +1,24 @@
 package Controller;
 
+import Model.ClientAPI;
 import Model.Item.PostItem;
 import Model.PageLoader;
 import Model.Post;
+import Model.Profile;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 
 import static Model.Main.*;
 
@@ -36,36 +42,68 @@ public class PublicUsersPageController {
     public ImageView uploadButton;
     public ImageView activityButton;
     public ImageView profileButton;
-
+    public ImageView searchButton;
+    byte [] image;
+    public Profile profile;
+    public static Profile temp;
+    int a = 0, b = 0, c = 0;
+    int help = 0 , i = 0;
     @FXML
-    public void initialize(){
+    public void initialize() {
         lastPage = "PublicUsersPage";
-        post_count.setText(String.valueOf(visitCurrentUser.myPosts.size()));
-        followers_count.setText(String.valueOf(visitCurrentUser.followers.size()));
-        following_count.setText(String.valueOf(visitCurrentUser.following.size()));
-        username.setText(visitCurrentUser.getUsername());
-        profile_bio.setText(visitCurrentUser.getBio());
-        user_firstname.setText(visitCurrentUser.getFirstname());
-        profile_image.setImage(visitCurrentUser.profileImage.getImage());
-        if (visitCurrentUser.followers.contains(currentUser)){
+        profile = targetUser;
+        username.setText(profile.getUsername());
+        image = ClientAPI.getProfile(profile);
+        Image newImage = new Image(new ByteArrayInputStream(image));
+        if (newImage != null)
+            profile_image.setImage(newImage);
+        Map<String , String> data = ClientAPI.getInformation(profile);
+        assert data != null;
+        user_firstname.setText(data.get("firstname"));
+        profile_bio.setText(data.get("bio"));
+
+        String[] details = ClientAPI.getProfilesNumber(currentUser,profile).split("\\|");
+
+        assert details != null;
+        a = Integer.parseInt(details[0]);
+        following_count.setText(String.valueOf(a));
+        b = Integer.parseInt(details[1]);
+        followers_count.setText(String.valueOf(b));
+        c = Integer.parseInt(details[2]);
+        post_count.setText(String.valueOf(c));
+
+        /**
+         * check current user follow this page or not
+         */
+        List<String> list = ClientAPI.getFollowers(targetUser);
+        assert targetUser != null;
+        assert list != null;
+        if (list.contains(currentUser.getUsername())){
             follow_button.setVisible(false);
             unfollow_button.setVisible(true);
         }
-        user_postList.setItems(FXCollections.observableArrayList(visitCurrentUser.myPosts));
-        user_postList.setCellFactory(PostList -> new PostItem());
+
+        ClientAPI.getMyPosts(targetUser);
+        user_postList.setItems(FXCollections.observableArrayList(targetUser.getPosts()));
+        user_postList.setCellFactory(posts -> new PostItem());
     }
 
 
     public void follow(ActionEvent actionEvent) {
-        visitCurrentUser.followers.add(currentUser);
-        currentUser.following.add(visitCurrentUser);
+        String [] string = ClientAPI.follow(currentUser, targetUser).split("\\|");
+        assert string != null;
+        help = Integer.parseInt(string[1]);
+        followers_count.setText(String.valueOf(help));
         follow_button.setVisible(false);
         unfollow_button.setVisible(true);
     }
 
     public void unfollow(ActionEvent actionEvent) {
-        visitCurrentUser.followers.remove(currentUser);
-        currentUser.following.remove(visitCurrentUser);
+        String [] string = ClientAPI.unfollow(currentUser, targetUser).split("\\|");
+
+        assert string != null;
+        i = Integer.parseInt(string[1]);
+        followers_count.setText(String.valueOf(i));
         unfollow_button.setVisible(false);
         follow_button.setVisible(true);
     }
@@ -84,5 +122,10 @@ public class PublicUsersPageController {
 
     public void profilePage(MouseEvent mouseEvent) throws IOException {
         new PageLoader().load("Profile_page");
+    }
+
+
+    public void SearchPage(MouseEvent mouseEvent) throws IOException {
+        new PageLoader().load("Search_page");
     }
 }

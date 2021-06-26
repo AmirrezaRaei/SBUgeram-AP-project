@@ -6,6 +6,7 @@ import Model.Profile;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
@@ -13,7 +14,7 @@ public class Server implements Runnable {
     public static  final int port = 2222;
     private static  boolean isServerUp = true;
 
-    public static Map<String, Profile> profiles = null;
+    public static Map<String, Profile> profiles = new HashMap<>();
     public static Set<Post> posts = null;
     public static ServerSocket serverSocket=null;
 
@@ -28,6 +29,7 @@ public class Server implements Runnable {
             e.printStackTrace();
         }
         Thread thread = new Thread(new Server());
+        thread.start();
     }
 
 

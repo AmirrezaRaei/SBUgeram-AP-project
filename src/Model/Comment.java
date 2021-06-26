@@ -1,6 +1,8 @@
 package Model;
 
-public class Comment {
+import java.io.Serializable;
+
+public class Comment implements Serializable,Comparable {
     private Profile writer = new Profile();
     private String comment;
 
@@ -27,5 +29,10 @@ public class Comment {
 
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        return 0;
     }
 }

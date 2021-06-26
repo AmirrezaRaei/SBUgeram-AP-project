@@ -1,15 +1,15 @@
 package Controller;
 
-import Model.Main;
-import Model.PageLoader;
-import Model.Post;
-import Model.Profile;
+import Model.*;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.util.List;
 
 import static Model.Main.*;
 
@@ -33,40 +33,61 @@ public class PostItemController {
     public ImageView username_image;
     public ImageView unRepost;
 
+    public Post cPost;// get post details
+    public static Post temp; // use for comment
+    int a = 0, b = 0, c = 0;
+
 
     public PostItemController(Post post) throws IOException {
-        currentPost = post;
+        this.cPost = post;
         new PageLoader().load("Post", this);
     }
 
     public AnchorPane init() {
-        username.setText(currentPost.getProfile().getUsername()); // to show username
-        if (currentPost.getTitle().equals("")) //  to show title or username
-            title.setText(currentPost.getProfile().getUsername() + " :");
+        byte[] image;
+        username.setText(cPost.getProfile().getUsername());
+
+        image = ClientAPI.getProfile(cPost.getProfile());
+
+        if (image != null)
+            username_image.setImage(new Image(new ByteArrayInputStream(image)));
+        if (cPost.getTitle().equals("")) //  to show title or username
+            title.setText(cPost.getProfile().getUsername() + " :");
         else
-            title.setText(currentPost.getTitle() + " :");
+            title.setText(cPost.getTitle() + " :");
 
-        if (currentPost.reposted.size() != 0) // show number of repost
-            repost_count.setText(String.valueOf(currentPost.getReposted().size()));
+        description.setText(cPost.getDescription());
 
-        likes_count.setText(currentPost.getLike() + "Likes");// show like count
+        post_image.setImage(new Image(new ByteArrayInputStream(cPost.getImage())));
+        if (cPost.getProfile().profileImage != null)
+            username_image.setImage(new Image(new ByteArrayInputStream(cPost.getProfile().profileImage)));
 
-        if (currentPost.getComment() != 0) // show number of comments
-            show_comments_count.setText("View all " + currentPost.getComment() + " comments");
-        description.setText(currentPost.getDescription());
+        String [] s = ClientAPI.getPostDetails(cPost).split("\\|");
 
-        post_image.setImage(currentPost.getImageView().getImage());
+        assert s != null;
+        a = Integer.parseInt(s[0]);
+        if (a > 0)
+            likes_count.setText(a + " Likes");// show like count
+        b = Integer.parseInt(s[1]);
+        if (b > 0)
+            repost_count.setText(String.valueOf(b));
+        c = Integer.parseInt(s[2]);
+        if (a != 0) {
+            show_comments_count.setText("View all " + a + " comments");
+        } else show_comments_count.setText("View all comments");
 
-        username_image.setImage(currentPost.getProfile().profileImage.getImage());
-
-        if (currentPost.liked.contains(currentUser)) {
+        List<String> list = ClientAPI.getLikes(cPost);
+        assert list != null;
+        if (list.contains(currentUser.getUsername())) {
             empty_heart.setVisible(false);
             fill_heart.setVisible(true);
         } else {
             fill_heart.setVisible(false);
             empty_heart.setVisible(true);
         }
-        if (currentPost.reposted.contains(currentUser)){
+        list = ClientAPI.getReposts(cPost);
+        assert list != null;
+        if (list.contains(currentUser.getUsername())) {
             repost.setVisible(false);
             unRepost.setVisible(true);
         } else {
@@ -77,44 +98,62 @@ public class PostItemController {
     }
 
     public void profile_page(MouseEvent mouseEvent) throws IOException {
-        visitCurrentUser = new Profile(username.getText());
-        if (visitCurrentUser.equals(currentUser))
+        targetUser = cPost.getProfile();
+        if (targetUser.equals(currentUser))
             new PageLoader().load("Profile_page");
-        if (visitCurrentUser.getPrivate_page() && visitCurrentUser.requested.contains(currentUser))
-            new PageLoader().load("PrivateUsersPage");
         else new PageLoader().load("PublicUsersPage");
+
     }
 
     public void repost(MouseEvent mouseEvent) {
-        currentUser.myPosts.add(currentPost);
-        currentPost.reposted.add(currentUser);
-        repost.setVisible(false);
-        unRepost.setVisible(true);
+        cPost.share.add(currentUser);
+        int a = 0;
+        a = ClientAPI.repost(currentUser, cPost);
+        repost_count.setText(String.valueOf(a));
+        currentUser.getPosts().add(cPost);
+        Main.update();
+        ClientAPI.getAllPosts(currentUser);
+        for (Profile profile :
+                profiles.values()) {
+            ClientAPI.getMyPosts(profile);
+        }
     }
 
     public void like_post(MouseEvent mouseEvent) {
         empty_heart.setVisible(false);
         fill_heart.setVisible(true);
-        currentPost.setLike((currentPost.getLike() + 1));
-        likes_count.setText(currentPost.getLike() + "Likes");
-        currentPost.liked.add(currentUser);
+        int like = ClientAPI.like(cPost, currentUser);
+        if (like > 0 )
+            likes_count.setText(like + " Likes");
     }
 
     public void unlike_post(MouseEvent mouseEvent) {
         empty_heart.setVisible(true);
         fill_heart.setVisible(false);
-        currentPost.setLike((currentPost.getLike() - 1));
-        likes_count.setText(currentPost.getLike() + "Likes");
-        currentPost.liked.remove(currentUser);
+        int help = ClientAPI.unlike(cPost, currentUser);
+        if (help > 0)
+            likes_count.setText(help + " Likes");
     }
 
     public void seeTheComments(MouseEvent mouseEvent) throws IOException {
+        targetPost = cPost;
         new PageLoader().load("CommentsPage");
     }
 
     public void unRepost(MouseEvent mouseEvent) {
-        currentUser.getPosts().remove(currentPost);
+        currentUser.getPosts().remove(targetPost);
         unRepost.setVisible(false);
         repost.setVisible(true);
+        cPost.share.remove(currentUser);
+        int i = 0;
+        i = ClientAPI.unRepost(currentUser, cPost);
+        repost_count.setText(String.valueOf(i));
+        currentUser.getPosts().remove(cPost);
+        Main.update();
+        ClientAPI.getAllPosts(currentUser);
+        for (Profile profile :
+                profiles.values()) {
+            ClientAPI.getMyPosts(profile);
+        }
     }
 }

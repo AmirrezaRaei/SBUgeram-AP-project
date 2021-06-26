@@ -8,7 +8,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentSkipListSet;
 
 public class Database {
-    public static String File_PREFIX = "C:\\Users\\amirr\\Desktop\\src\\database";
+    public static String File_PREFIX = "C:\\Users\\amirr\\Desktop\\AP\\SBUgeram - project\\src\\database\\";
     public static final String ProfileFile = File_PREFIX + "ProfileDatabase.txt";
     public static final String PostFile = File_PREFIX + "PostDatabase.txt";
 
