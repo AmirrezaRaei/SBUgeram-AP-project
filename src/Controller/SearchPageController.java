@@ -11,12 +11,22 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+
 import static Model.Main.*;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * <h1>SearchPageController</h1>
+ * <p>this controller page for search profile </p>
+ *
+ * @author A.Raei
+ * @version 1.0
+ * @since 12/2/2021
+ */
 public class SearchPageController {
 
     public TextField search_field;
@@ -25,9 +35,13 @@ public class SearchPageController {
     public ImageView activity_button;
     public ImageView profileButton;
     public AnchorPane root;
-    public ListView <Profile> find = new ListView<>();
+    public ListView<Profile> find = new ListView<>();
 
-
+    /**
+     * user can search in accounts by this method
+     *
+     * @param actionEvent by click on a button
+     */
     public void search(ActionEvent actionEvent) {
         ClientAPI.getAllProfiles(currentUser);
         List<Profile> profileList = new ArrayList<>();
@@ -42,10 +56,22 @@ public class SearchPageController {
         find.setCellFactory(temp -> new ProfileItem());
     }
 
+    /**
+     * it opens user's home page
+     *
+     * @param mouseEvent by click on a button
+     * @throws IOException because of using page Loader
+     */
     public void homePage(MouseEvent mouseEvent) throws IOException {
         new PageLoader().load("TimeLine");
     }
 
+    /**
+     * it opens upload page
+     *
+     * @param mouseEvent by click on a button
+     * @throws IOException because of using page Loader
+     */
     public void uploadPage(MouseEvent mouseEvent) throws IOException {
         new PageLoader().load("UploadNewPost");
     }
@@ -54,6 +80,12 @@ public class SearchPageController {
         new PageLoader().load("TimeLine");
     }
 
+    /**
+     * it opens user's personal page
+     *
+     * @param mouseEvent by click on a button
+     * @throws IOException because of using page Loader
+     */
     public void profilePage(MouseEvent mouseEvent) throws IOException {
         new PageLoader().load("Profile_page");
     }

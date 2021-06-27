@@ -20,7 +20,14 @@ import java.util.List;
 
 import static Model.Main.currentUser;
 import static Model.Main.targetPost;
-
+/**
+ * <h1>CommentsPageController</h1>
+ * <p>this controller page for see the all comments </p>
+ *
+ * @author A.Raei
+ * @version 1.0
+ * @since 12/2/2021
+ */
 public class CommentsPageController {
 
     public Button arrow_button;
@@ -36,6 +43,9 @@ public class CommentsPageController {
     List<Comment> commentList = new ArrayList<>();
 
     byte [] image;
+    /**
+     * this method load all comments that post has
+     */
     @FXML
     public void initialize() {
         Profile profile = targetPost.getProfile();
@@ -53,23 +63,35 @@ public class CommentsPageController {
         comments_list.setCellFactory(PostList -> new CommentsItem());
     }
 
+    /**
+     * back to the last page & save the changes
+     *
+     * @param actionEvent by click on a button
+     * @throws IOException because of using pageLoader
+     */
     public void last_page(ActionEvent actionEvent) throws IOException {
         new PageLoader().load(Main.lastPage);
     }
-
+    /**
+     * this method initialize and add new comment
+     * @param actionEvent by click on a button
+     */
     public void add_comment(ActionEvent actionEvent) {
-        Comment currentComment = new Comment();
-        currentComment.setComment(addComment_field.getText());
+        currentComment = new Comment();
         currentComment.setWriter(currentUser);
-        commentList = ClientAPI.setComment(PostItemController.temp,currentUser,currentComment);
-        commentList = ClientAPI.getComments(PostItemController.temp);
+        currentComment.setComment(addComment_field.getText());
+        commentList = ClientAPI.setComment(targetPost,currentUser,currentComment);
+        commentList = ClientAPI.getComments(targetPost);
         assert commentList != null;
         commentList.add(currentComment);
         comments_list.setItems(FXCollections.observableArrayList(commentList));
         comments_list.setCellFactory(commentList -> new CommentsItem());
         addComment_field.setText("");
     }
-
+    /**
+     * this method initialize and add new comment
+     * @param mouseEvent by click on a button
+     */
     public void send_comment(MouseEvent mouseEvent) {
         currentComment = new Comment();
         currentComment.setWriter(currentUser);

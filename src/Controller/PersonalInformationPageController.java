@@ -12,6 +12,14 @@ import java.util.Map;
 
 import static Model.Main.currentUser;
 
+/**
+ * <h1>PersonalInformationPageController</h1>
+ * <p>this controller page for change  personal information </p>
+ *
+ * @author A.Raei
+ * @version 1.0
+ * @since 12/2/2021
+ */
 public class PersonalInformationPageController {
     public Button arrow_button;
     // field
@@ -19,9 +27,10 @@ public class PersonalInformationPageController {
     public TextField lastname_field;
     public TextField phone_field;
     public TextField gender_field;
+
     @FXML
-    public void initialize(){
-        Map<String,String> information = ClientAPI.getInformation(currentUser);
+    public void initialize() {
+        Map<String, String> information = ClientAPI.getInformation(currentUser);
         assert information != null;
         if (information.get("emailAddress") != null)
             email_field.setText(information.get("emailAddress"));
@@ -32,6 +41,13 @@ public class PersonalInformationPageController {
         if (!information.get("gender").equals("unselected"))
             gender_field.setText(information.get("gender"));
     }
+
+    /**
+     * back to the last page & save the changes
+     *
+     * @param actionEvent by click on a button
+     * @throws IOException because of using pageLoader
+     */
     public void last_page(ActionEvent actionEvent) throws IOException {
         currentUser.setEmailAddress(email_field.getText());
         currentUser.setLastname(lastname_field.getText());

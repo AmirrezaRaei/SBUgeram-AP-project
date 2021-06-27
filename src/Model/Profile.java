@@ -9,7 +9,13 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ConcurrentSkipListSet;
 import java.util.concurrent.CopyOnWriteArrayList;
-
+/**
+ * <h1>Profile</h1>
+ * <p>this class handles users</p>
+ * @author A.Raei
+ * @since 12/2/2021
+ * @version 1.0
+ */
 public class Profile implements Serializable,Comparable {
     // user information
     protected String username;
@@ -166,6 +172,11 @@ public class Profile implements Serializable,Comparable {
         this.myPosts = posts;
     }
 
+    /**
+     * @param username the username of a user
+     * @param password the password of that user
+     * @return a boolean that show username and password are belong to a same user or not
+     */
     public Profile authenticate(String username, String password) {
         if (this.username.equals(username) && this.password.equals(password)) return this;
         return null;

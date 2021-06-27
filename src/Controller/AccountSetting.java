@@ -20,7 +20,13 @@ import java.util.Map;
 
 import static Model.Main.currentUser;
 import static Model.Main.profiles;
-
+/**
+ * <h1>AccountSetting</h1>
+ * <p>this controller page for set user information </p>
+ * @author A.Raei
+ * @since 12/2/2021
+ * @version 1.0
+ */
 public class AccountSetting {
     //button
     public Button changePicture_button;
@@ -104,7 +110,11 @@ public class AccountSetting {
         transition.setByX(224);
         transition.playFromStart();
     }
-
+    /**
+     * user can add Image to its new profile Image by this method
+     * @param actionEvent by click on a button
+     * @throws IOException because of using FileInputStream
+     */
     public void changeProfileImage(ActionEvent actionEvent) throws IOException {
         FileChooser fileChooser = new FileChooser();
         File file = fileChooser.showOpenDialog(new Popup());
@@ -118,6 +128,11 @@ public class AccountSetting {
         }
     }
 
+    /**
+     * user save the the information in database and it opens user's home page
+     * @param actionEvent by clicking this button
+     * @throws IOException because of using page Loader
+     */
     public void Done(ActionEvent actionEvent) throws IOException {
         Map<String, String> help = new HashMap<>();
         if (image != null )
@@ -164,6 +179,11 @@ public class AccountSetting {
         }
     }
 
+    /**
+     * user can go to the last page with this method
+     * @param actionEvent by clicking this button
+     * @throws IOException because of using page Loader
+     */
     public void lastPage(ActionEvent actionEvent) throws IOException {
         new PageLoader().load("usernameInformation");
     }

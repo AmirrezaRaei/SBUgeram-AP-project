@@ -1,7 +1,13 @@
 package Model;
 
 import java.io.Serializable;
-
+/**
+ * <h1>Comment</h1>
+ * <p>this class handles Comment</p>
+ * @author A.Raei
+ * @since 12/2/2021
+ * @version 1.0
+ */
 public class Comment implements Serializable,Comparable {
     private Profile writer = new Profile();
     private String comment;

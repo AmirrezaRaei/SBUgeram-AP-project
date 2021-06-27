@@ -6,13 +6,24 @@ import Model.Comment;
 import Model.Gender;
 import Model.Post;
 import Model.Profile;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * <h1>TimeLineController</h1>
+ * <p>this class receive massage from client and send respond to</p>
+ * @author A.Raei
+ * @since 12/2/2021
+ * @version 1.0
+ */
 public class API {
+
+    /**
+     * this method check if the username's exist and its password is correct and let an existing user to log in
+     * @param input its a map that server received from client and it filled by client's request
+     * @return it returns a map that filled with server's answer that it responds the client's request
+     */
     public static Map<String, Object> login(Map<String, Object> input) {
         Map<String, Object> output = new HashMap<>();
         String user, password;
@@ -35,6 +46,11 @@ public class API {
         return output;
     }
 
+    /**
+     * this method reports the user's log out
+     * @param input its a map that server received from client and it filled by client's request
+     * @return it returns a map that filled with server's answer that it responds the client's request
+     */
     public static Map<String, Object> logout(Map<String, Object> input) {
         Map<String, Object> output = new HashMap<>();
         Profile profile = (Profile) input.get("profile");
@@ -45,12 +61,16 @@ public class API {
         return output;
     }
 
+    /**
+     * this method add the new user that signed up to all users
+     * @param input its a map that server received from client and it filled by client's request
+     * @return it returns a map that filled with server's answer that it responds the client's request
+     */
     public static Map<String, Object> signup(Map<String, Object> input) {
         // Fields
         Map<String, Object> output = new HashMap<>();
         String username;
         Profile profile;
-        //todo
         profile = (Profile) input.get("profile");
         username = profile.getUsername();
         Server.profiles.put(username, profile);
@@ -60,9 +80,13 @@ public class API {
         return output;
     }
 
+    /**
+     * this method add new post to all posts
+     * @param input its a map that server received from client and it filled by client's request
+     * @return it returns a map that filled with server's answer that it responds the client's request
+     */
     public static Map<String, Object> addPost(Map<String, Object> input) {
         Map<String, Object> output = new HashMap<>();
-        List<Post> help = new ArrayList<>(Server.posts);
         Post outputPost = (Post) input.get("post");
         String path = (String) input.get("path");
         byte [] image = (byte[]) input.get("image");
@@ -86,6 +110,11 @@ public class API {
         return output;
     }
 
+    /**
+     * this method send all posts to the client
+     * @param input its a map that server received from client and it filled by client's request
+     * @return it returns a map that filled with server's answer that it responds the client's request
+     */
     public static Map<String, Object> getPosts(Map<String, Object> input) {
         Map<String, Object> output = new HashMap<>();
         List<Post> help = new ArrayList<>(Server.posts);
@@ -94,6 +123,11 @@ public class API {
         return output;
     }
 
+    /**
+     * this method send all of a special user posts to the client
+     * @param input its a map that server received from client and it filled by client's request
+     * @return it returns a map that filled with server's answer that it responds the client's request
+     */
     public static Map<String, Object> getMyPosts(Map<String, Object> input) {
         Map<String, Object> output = new HashMap<>();
         Profile profile = (Profile) input.get("profile");
@@ -103,6 +137,11 @@ public class API {
         return output;
     }
 
+    /**
+     * this method send all profiles to the client
+     * @param input its a map that server received from client and it filled by client's request
+     * @return it returns a map that filled with server's answer that it responds the client's request
+     */
     public static Map<String, Object> getProfiles(Map<String, Object> input) {
         Map<String, Object> output = new HashMap<>();
         Map<String, Profile> map = new HashMap<>();
@@ -125,6 +164,11 @@ public class API {
         return output;
     }
 
+    /**
+     * this method add the target user to user's following and add the user to its followers too
+     * @param input its a map that server received from client and it filled by client's request
+     * @return it returns a map that filled with server's answer that it responds the client's request
+     */
     public static Map<String, Object> follow(Map<String, Object> input) {
         Map<String, Object> output = new HashMap<>();
         String ans;
@@ -164,6 +208,11 @@ public class API {
         return output;
     }
 
+    /**
+     * this method send the user's profile image to the client
+     * @param input its a map that server received from client and it filled by client's request
+     * @return it returns a map that filled with server's answer that it responds the client's request
+     */
     public static Map<String, Object> getProfile(Map<String, Object> input) {
         Map<String, Object> output = new HashMap<>();
         Profile profile = (Profile) input.get("profile");
@@ -172,7 +221,11 @@ public class API {
         output.put("answer", image);
         return output;
     }
-
+    /**
+     * this method set a profile photo for the user (just for sign up function)
+     * @param input its a map that server received from client and it filled by client's request
+     * @return it returns a map that filled with server's answer that it responds the client's request
+     */
     public static Map<String, Object> setProfile(Map<String, Object> input) {
         Map<String, Object> output = new HashMap<>();
         Profile profile = (Profile) input.get("profile");
@@ -188,6 +241,11 @@ public class API {
         return output;
     }
 
+    /**
+     * this method send the user's personal information to the client
+     * @param input its a map that server received from client and it filled by client's request
+     * @return it returns a map that filled with server's answer that it responds the client's request
+     */
     public static Map<String, Object> getInformation(Map<String, Object> input) {
         Map<String, String> output = new HashMap<>();
         Map<String, Object> result = new HashMap<>();
@@ -211,6 +269,11 @@ public class API {
         return result;
     }
 
+    /**
+     * this method add the personal information that user add for itself
+     * @param input its a map that server received from client and it filled by client's request
+     * @return it returns a map that filled with server's answer that it responds the client's request
+     */
     public static Map<String, Object> setInformation(Map<String, Object> input) {
         Map<String, Object> output = new HashMap<>();
         Map<String, String> result;
@@ -236,6 +299,11 @@ public class API {
         return output;
     }
 
+    /**
+     * this method add the user to the target post's likes
+     * @param input its a map that server received from client and it filled by client's request
+     * @return it returns a map that filled with server's answer that it responds the client's request
+     */
     public static Map<String, Object> like(Map<String, Object> input) {
         Map<String, Object> output = new HashMap<>();
         int counter = 0;
@@ -258,6 +326,11 @@ public class API {
         return output;
     }
 
+    /**
+     * this method remove the user from the target post's likes
+     * @param input its a map that server received from client and it filled by client's request
+     * @return it returns a map that filled with server's answer that it responds the client's request
+     */
     public static Map<String, Object> unlike(Map<String, Object> input) {
         /**
          *  similar to like method but vice versa
@@ -279,6 +352,11 @@ public class API {
         return output;
     }
 
+    /**
+     * this method add the user to the target post's reposts and add the target post to the user's posts
+     * @param input its a map that server received from client and it filled by client's request
+     * @return it returns a map that filled with server's answer that it responds the client's request
+     */
     public static Map<String, Object> repost(Map<String, Object> input) {
         Map<String, Object> output = new HashMap<>();
         int counter = 0;
@@ -299,7 +377,11 @@ public class API {
         System.out.println("message : ");
         return output;
     }
-
+    /**
+     * this method remove the user to the target post's reposts and add the target post to the user's posts
+     * @param input its a map that server received from client and it filled by client's request
+     * @return it returns a map that filled with server's answer that it responds the client's request
+     */
     public static Map<String, Object> unRepost(Map<String, Object> input) {
         /**
          *  similar to repost method but vice versa
@@ -323,6 +405,11 @@ public class API {
         return output;
     }
 
+    /**
+     * this method set new comment to all target post's comments
+     * @param input its a map that server received from client and it filled by client's request
+     * @return it returns a map that filled with server's answer that it responds the client's request
+     */
     public static Map<String, Object> setComment(Map<String, Object> input) {
         Map<String, Object> output = new HashMap<>();
         List<Comment> commentList = new ArrayList<>();
@@ -345,6 +432,11 @@ public class API {
         return output;
     }
 
+    /**
+     * this method send all post's comments to the client
+     * @param input its a map that server received from client and it filled by client's request
+     * @return it returns a map that filled with server's answer that it responds the client's request
+     */
     public static Map<String, Object> getComment(Map<String, Object> input) {
         Post post = (Post) input.get("post");
         List<Comment> commentList;
@@ -361,6 +453,11 @@ public class API {
     }
 
     // add extra method
+    /**
+     * this method set a new profile photo for the user(for edit profile page)
+     * @param input its a map that server received from client and it filled by client's request
+     * @return it returns a map that filled with server's answer that it responds the client's request
+     */
     public static Map<String, Object> editProfile(Map<String, Object> input) {
         Map<String, Object> output = new HashMap<>();
         Profile profile = (Profile) input.get("profile");
@@ -403,6 +500,11 @@ public class API {
         return output;
     }
 
+    /**
+     * this method send a user features to the client
+     * @param input its a map that server received from client and it filled by client's request
+     * @return it returns a map that filled with server's answer that it responds the client's request
+     */
     public static Map<String, Object> getNumbers(Map<String, Object> input) {
         Map<String, Object> output = new HashMap<>();
         Profile profile = (Profile) input.get("profile");
@@ -414,6 +516,11 @@ public class API {
         return output;
     }
 
+    /**
+     * this method send a profile features to the client and it reports this too
+     * @param input its a map that server received from client and it filled by client's request
+     * @return it returns a map that filled with server's answer that it responds the client's request
+     */
     public static Map<String, Object> getProfilesNumber(Map<String, Object> input) { // for server
         Map<String, Object> output = new HashMap<>();
         Profile profile = (Profile) input.get("profile");

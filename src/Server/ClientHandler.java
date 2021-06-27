@@ -7,7 +7,13 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.Map;
-
+/**
+ * <h1>Client Handler</h1>
+ * <p>this class handles each client that is connected to server and make new thread for it</p>
+ * @author A.Raei
+ * @since 12/2/2021
+ * @version 1.0
+ */
 public class ClientHandler implements Runnable {
     private Socket userSocket;
     private ObjectOutputStream objectOutputStream;
@@ -28,12 +34,15 @@ public class ClientHandler implements Runnable {
         }
     }
 
+    /**
+     * it handles client requests with switch case and use methods in ServerAPI for this
+     * this method read and write objects in input and output streams too
+     */
     @Override
     public void run() {
         Map<String, Object> input, output;
         while (true) {
             input = null;
-
             try {
                 input = (Map<String, Object>) objectInputStream.readObject();
                 output = null;

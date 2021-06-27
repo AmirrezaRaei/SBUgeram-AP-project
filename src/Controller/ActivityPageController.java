@@ -12,7 +12,14 @@ import javafx.scene.input.MouseEvent;
 import java.io.IOException;
 
 import static Model.Main.currentUser;
-
+/**
+ * <h1>ActivityPageController</h1>
+ * <p>this controller page for see the all activities</p>
+ *
+ * @author A.Raei
+ * @version 1.0
+ * @since 12/2/2021
+ */
 public class ActivityPageController {
 
     public ListView<Request> request_list = new ListView<>();

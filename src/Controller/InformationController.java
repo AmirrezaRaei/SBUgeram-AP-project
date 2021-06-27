@@ -14,6 +14,14 @@ import java.util.Random;
 
 import static Model.Main.currentUser;
 
+/**
+ * <h1>InformationController</h1>
+ * <p>this controller page for set information for new user </p>
+ *
+ * @author A.Raei
+ * @version 1.0
+ * @since 12/2/2021
+ */
 public class InformationController {
     //field
     public TextField first_name;
@@ -42,8 +50,6 @@ public class InformationController {
     //others
     public String[] answer = {"991181", "665648", "163356", "742336", "321404", "651606"};
     public int imageCounter = 0;
-
-
 
 
     public int getRandomNumberUsingNextInt(int min, int max) {
@@ -90,13 +96,23 @@ public class InformationController {
         image6.setVisible(false);
     }
 
+    /**
+     * it change security picture
+     * @param actionEvent by click on a button
+     */
     public void change_picture(ActionEvent actionEvent) {
-        imageCounter = getRandomNumberUsingNextInt(0,5);
+        imageCounter = getRandomNumberUsingNextInt(0, 5);
         visibleImage();
     }
 
+    /**
+     * it opens Account setting page
+     *
+     * @param actionEvent by click on a button
+     * @throws IOException because of page loader
+     */
     public void goToNextPage(ActionEvent actionEvent) throws IOException {
-        if (fields_empty_alert.isVisible() || wrongAnswer_alert.isVisible()){
+        if (fields_empty_alert.isVisible() || wrongAnswer_alert.isVisible()) {
             fields_empty_alert.setVisible(false);
             wrongAnswer_alert.setVisible(false);
         }
@@ -109,16 +125,18 @@ public class InformationController {
             fields_empty_alert.setVisible(true);
         else if (!security.equalsIgnoreCase(answer[(imageCounter)])) {
             wrongAnswer_alert.setVisible(true);
-            imageCounter = getRandomNumberUsingNextInt(0,5);
+            imageCounter = getRandomNumberUsingNextInt(0, 5);
             visibleImage();
-        }
-        else {
+        } else {
             updateProfileInformation(); // update profile
             new PageLoader().load("AccountSetting");
         }
     }
 
-    public void updateProfileInformation(){
+    /**
+     * it update personal information
+     */
+    public void updateProfileInformation() {
         currentUser.setFirstname(first_name.getText());
         currentUser.setAge(Integer.parseInt(age_field.getText()));
 

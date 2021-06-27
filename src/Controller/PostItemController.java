@@ -13,6 +13,14 @@ import java.util.List;
 
 import static Model.Main.*;
 
+/**
+ * <h1>PostItemController</h1>
+ * <p>this class shows posts in a special view </p>
+ *
+ * @author A.Raei
+ * @version 1.0
+ * @since 12/2/2021
+ */
 public class PostItemController {
     // label
     public Label username;
@@ -37,12 +45,22 @@ public class PostItemController {
     public static Post temp; // use for comment
     int a = 0, b = 0, c = 0;
 
-
+    /**
+     * its just a constructor
+     *
+     * @param post it initialize global post with this
+     * @throws IOException because of using pageLoader
+     */
     public PostItemController(Post post) throws IOException {
         this.cPost = post;
         new PageLoader().load("Post", this);
     }
 
+    /**
+     * this method initialize post features
+     *
+     * @return the pane that shows the post
+     */
     public AnchorPane init() {
         byte[] image;
         username.setText(cPost.getProfile().getUsername());
@@ -62,7 +80,7 @@ public class PostItemController {
         if (cPost.getProfile().profileImage != null)
             username_image.setImage(new Image(new ByteArrayInputStream(cPost.getProfile().profileImage)));
 
-        String [] s = ClientAPI.getPostDetails(cPost).split("\\|");
+        String[] s = ClientAPI.getPostDetails(cPost).split("\\|");
 
         assert s != null;
         a = Integer.parseInt(s[0]);
@@ -97,6 +115,12 @@ public class PostItemController {
         return post_pane;
     }
 
+        /**
+         * user can view the post's writer's personal profile
+         *
+         * @param mouseEvent by click on a button
+         * @throws IOException because of using pageLoader
+         */
     public void profile_page(MouseEvent mouseEvent) throws IOException {
         targetUser = cPost.getProfile();
         if (targetUser.equals(currentUser))
@@ -105,13 +129,18 @@ public class PostItemController {
 
     }
 
+    /**
+     * user can repost the cPost post and add it to its posts
+     *
+     * @param mouseEvent by click on a button
+     */
     public void repost(MouseEvent mouseEvent) {
         cPost.share.add(currentUser);
         int a = 0;
         a = ClientAPI.repost(currentUser, cPost);
         repost_count.setText(String.valueOf(a));
-        currentUser.getPosts().add(cPost);
-        Main.update();
+        currentUser.myPosts.add(cPost);
+//        Main.update();
         ClientAPI.getAllPosts(currentUser);
         for (Profile profile :
                 profiles.values()) {
@@ -119,14 +148,23 @@ public class PostItemController {
         }
     }
 
+    /**
+     * user can like by this method
+     *
+     * @param mouseEvent by click on a button
+     */
     public void like_post(MouseEvent mouseEvent) {
         empty_heart.setVisible(false);
         fill_heart.setVisible(true);
         int like = ClientAPI.like(cPost, currentUser);
-        if (like > 0 )
+        if (like > 0)
             likes_count.setText(like + " Likes");
     }
-
+    /**
+     * user can take its like back by this method
+     *
+     * @param mouseEvent by click on a button
+     */
     public void unlike_post(MouseEvent mouseEvent) {
         empty_heart.setVisible(true);
         fill_heart.setVisible(false);
@@ -135,13 +173,23 @@ public class PostItemController {
             likes_count.setText(help + " Likes");
     }
 
+    /**
+     * user can view post's comments
+     *
+     * @param mouseEvent by click on a button
+     * @throws IOException because of using pageLoader
+     */
     public void seeTheComments(MouseEvent mouseEvent) throws IOException {
         targetPost = cPost;
         new PageLoader().load("CommentsPage");
     }
 
+    /**
+     * user can take repost back the cPost
+     *
+     * @param mouseEvent by click on a button
+     */
     public void unRepost(MouseEvent mouseEvent) {
-        currentUser.getPosts().remove(targetPost);
         unRepost.setVisible(false);
         repost.setVisible(true);
         cPost.share.remove(currentUser);

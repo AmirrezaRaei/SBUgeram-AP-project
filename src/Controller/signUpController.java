@@ -11,7 +11,13 @@ import java.io.IOException;
 
 import static Model.Main.currentUser;
 import static Model.Main.profiles;
-
+/**
+ * <h1>SignUpController</h1>
+ * <p>a new person can create a new account if its chosen username doesn't exist yet</p>
+ * @author A.Raei
+ * @since 12/2/2021
+ * @version 1.0
+ */
 public class signUpController {
     // field
     public TextField username_register;
@@ -31,6 +37,11 @@ public class signUpController {
     public ImageView not_test;
     public Label username_alert1; // For the username that exists
 
+    /**
+     * if username and password were in a right way, this method create a new account for user
+     * @param actionEvent by click on a button
+     * @throws IOException because of using pageLoader
+     */
     public void signUp(ActionEvent actionEvent) throws IOException { // go to next page
         // invisible all alert
         confirm_password_alert.setVisible(false);
@@ -67,6 +78,12 @@ public class signUpController {
             test_done.setVisible(false);
         }
     }
+
+    /**
+     * user can go to the login page
+     * @param actionEvent
+     * @throws IOException because of using page loader
+     */
     public void login(ActionEvent actionEvent) throws IOException {
         new PageLoader().load("Login");
     }

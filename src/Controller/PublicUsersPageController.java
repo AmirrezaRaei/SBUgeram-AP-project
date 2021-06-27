@@ -22,6 +22,14 @@ import java.util.Map;
 
 import static Model.Main.*;
 
+/**
+ * <h1>PostItemController</h1>
+ * <p>this class shows all information of a user </p>
+ *
+ * @author A.Raei
+ * @version 1.0
+ * @since 12/2/2021
+ */
 public class PublicUsersPageController {
     // label : counter
     public Label post_count;
@@ -43,11 +51,12 @@ public class PublicUsersPageController {
     public ImageView activityButton;
     public ImageView profileButton;
     public ImageView searchButton;
-    byte [] image;
+    byte[] image;
     public Profile profile;
     public static Profile temp;
     int a = 0, b = 0, c = 0;
-    int help = 0 , i = 0;
+    int help = 0, i = 0;
+
     @FXML
     public void initialize() {
         lastPage = "PublicUsersPage";
@@ -57,12 +66,12 @@ public class PublicUsersPageController {
         Image newImage = new Image(new ByteArrayInputStream(image));
         if (newImage != null)
             profile_image.setImage(newImage);
-        Map<String , String> data = ClientAPI.getInformation(profile);
+        Map<String, String> data = ClientAPI.getInformation(profile);
         assert data != null;
         user_firstname.setText(data.get("firstname"));
         profile_bio.setText(data.get("bio"));
 
-        String[] details = ClientAPI.getProfilesNumber(currentUser,profile).split("\\|");
+        String[] details = ClientAPI.getProfilesNumber(currentUser, profile).split("\\|");
 
         assert details != null;
         a = Integer.parseInt(details[0]);
@@ -78,7 +87,7 @@ public class PublicUsersPageController {
         List<String> list = ClientAPI.getFollowers(targetUser);
         assert targetUser != null;
         assert list != null;
-        if (list.contains(currentUser.getUsername())){
+        if (list.contains(currentUser.getUsername())) {
             follow_button.setVisible(false);
             unfollow_button.setVisible(true);
         }
@@ -88,9 +97,13 @@ public class PublicUsersPageController {
         user_postList.setCellFactory(posts -> new PostItem());
     }
 
-
+    /**
+     * the user can follow target user with this method
+     *
+     * @param actionEvent by click on a button
+     */
     public void follow(ActionEvent actionEvent) {
-        String [] string = ClientAPI.follow(currentUser, targetUser).split("\\|");
+        String[] string = ClientAPI.follow(currentUser, targetUser).split("\\|");
         assert string != null;
         help = Integer.parseInt(string[1]);
         followers_count.setText(String.valueOf(help));
@@ -98,8 +111,13 @@ public class PublicUsersPageController {
         unfollow_button.setVisible(true);
     }
 
+    /**
+     * the user can unfollow target user with this method
+     *
+     * @param actionEvent by click on a button
+     */
     public void unfollow(ActionEvent actionEvent) {
-        String [] string = ClientAPI.unfollow(currentUser, targetUser).split("\\|");
+        String[] string = ClientAPI.unfollow(currentUser, targetUser).split("\\|");
 
         assert string != null;
         i = Integer.parseInt(string[1]);
@@ -108,23 +126,52 @@ public class PublicUsersPageController {
         follow_button.setVisible(true);
     }
 
+    /**
+     * it opens user's home page
+     *
+     * @param mouseEvent by click on a button
+     * @throws IOException because of using page Loader
+     */
     public void homePage(MouseEvent mouseEvent) throws IOException {
         new PageLoader().load("TimeLine");
     }
 
+    /**
+     * it opens user's home page
+     *
+     * @param mouseEvent by click on a button
+     * @throws IOException because of using page Loader
+     */
     public void uploadPage(MouseEvent mouseEvent) throws IOException {
         new PageLoader().load("UploadNewPost");
     }
 
+    /**
+     * it opens user's activityPage page
+     *
+     * @param mouseEvent by click on a button
+     * @throws IOException because of using page Loader
+     */
     public void activityPage(MouseEvent mouseEvent) throws IOException {
         new PageLoader().load("ActivityPage");
     }
 
+    /**
+     * it opens user's personal page
+     *
+     * @param mouseEvent by click on a button
+     * @throws IOException because of using page Loader
+     */
     public void profilePage(MouseEvent mouseEvent) throws IOException {
         new PageLoader().load("Profile_page");
     }
 
-
+    /**
+     * it opens user's search page
+     *
+     * @param mouseEvent by click on a tab
+     * @throws IOException because of using page Loader
+     */
     public void SearchPage(MouseEvent mouseEvent) throws IOException {
         new PageLoader().load("Search_page");
     }

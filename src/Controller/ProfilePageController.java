@@ -22,6 +22,14 @@ import java.util.Map;
 
 import static Model.Main.*;
 
+/**
+ * <h1>ProfilePageController</h1>
+ * <p>this controller page profile page </p>
+ *
+ * @author A.Raei
+ * @version 1.0
+ * @since 12/2/2021
+ */
 public class ProfilePageController {
     // label : counter
     public Label post_count;
@@ -41,16 +49,17 @@ public class ProfilePageController {
     public ImageView activityButton;
     public ImageView search_button;
     int a = 0, b = 0, c = 0;
+
     @FXML
     public void initialize() {
-        String [] counter = new String[3];
+        String[] counter = new String[3];
         Main.update();
-        List<Post> postList = ClientAPI.getMyPosts(currentUser);
+        ClientAPI.getAllOfMyPosts(currentUser);
         byte[] image = ClientAPI.getProfile(currentUser);
         if (image != null)
             profile_image.setImage(new Image(new ByteArrayInputStream(image)));
 
-        user_postList.setItems(FXCollections.observableArrayList(currentUser.getPosts()));
+        user_postList.setItems(FXCollections.observableArrayList(currentUser.myPosts));
         user_postList.setCellFactory(PostList -> new PostItem());
 
         counter = ClientAPI.getNumbers(currentUser).split("\\|");
@@ -71,26 +80,56 @@ public class ProfilePageController {
         lastPage = "Profile_page";
     }
 
+    /**
+     * its in user's personal page and user can edit its information here
+     *
+     * @param actionEvent by click on a button
+     * @throws IOException because of using pageLoader
+     */
     public void editProfile(ActionEvent actionEvent) throws IOException {
 //        lastPage = "Profile_page";
         new PageLoader().load("EditProfilePage");
     }
 
+    /**
+     * it opens user's personal page
+     *
+     * @param mouseEvent by click on a button
+     * @throws IOException because of using page Loader
+     */
     public void homePage(MouseEvent mouseEvent) throws IOException {
 //        lastPage = "Profile_page";
         new PageLoader().load("TimeLine");
     }
 
+    /**
+     * it opens upload page
+     *
+     * @param mouseEvent by click on a button
+     * @throws IOException because of using page Loader
+     */
     public void uploadNewPostPage(MouseEvent mouseEvent) throws IOException {
 //        lastPage = "Profile_page";
         new PageLoader().load("UploadNewPost");
     }
 
+    /**
+     * it opens user's activityPage page
+     *
+     * @param mouseEvent by click on a button
+     * @throws IOException because of using page Loader
+     */
     public void activityPage(MouseEvent mouseEvent) throws IOException {
 //        lastPage = "Profile_page";
         new PageLoader().load("ActivityPage");
     }
 
+    /**
+     * user can go search page  this method
+     *
+     * @param mouseEvent by click on a button
+     * @throws Exception because of using page Loader
+     */
     public void searchPage(MouseEvent mouseEvent) throws IOException {
         new PageLoader().load("Search_page");
     }

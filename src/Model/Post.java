@@ -7,14 +7,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.CopyOnWriteArrayList;
-
+/**
+ * <h1>Post</h1>
+ * <p>this class handles posts</p>
+ * @author A.Raei
+ * @since 12/2/2021
+ * @version 1.0
+ */
 public class Post implements Serializable,Comparable {
     protected Profile profile = new Profile();
     protected String title;
     protected String description = "";
     protected byte[] image;
-    private int like = 0;
-    private int comment = 0;
     public List<Profile> liked=new CopyOnWriteArrayList<>();
     public List<Profile> reposted=new CopyOnWriteArrayList<>();
     public List<Comment> comments = new CopyOnWriteArrayList<>();
@@ -35,14 +39,6 @@ public class Post implements Serializable,Comparable {
 
     public byte[] getImage() {
         return image;
-    }
-
-    public int getLike() {
-        return like;
-    }
-
-    public int getComment() {
-        return comment;
     }
 
     public List<Profile> getLiked() {
@@ -69,13 +65,6 @@ public class Post implements Serializable,Comparable {
         this.image = imageView;
     }
 
-    public void setLike(int like) {
-        this.like = like;
-    }
-
-    public void setComment(int comment) {
-        this.comment = comment;
-    }
 
     public void setLiked(ArrayList<Profile> liked) {
         this.liked = liked;

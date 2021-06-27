@@ -15,7 +15,14 @@ import java.io.IOException;
 
 import static Model.Main.currentUser;
 
-
+/**
+ * <h1>LoginController</h1>
+ * <p>this controller page check the username & password and run the application </p>
+ *
+ * @author A.Raei
+ * @version 1.0
+ * @since 12/2/2021
+ */
 public class LoginController {
     @FXML
     // filed
@@ -58,6 +65,11 @@ public class LoginController {
         showpassword.setVisible(true);
     }
 
+    /**
+     * if username and password were for same user, this method loads the user's timeline
+     * @param actionEvent by click on a button
+     * @throws IOException because of using pageLoader
+     */
     public void Login(ActionEvent actionEvent) throws IOException {
         // invisible all alert
         if (password_alert.isVisible()) {
@@ -94,6 +106,11 @@ public class LoginController {
         }
     }
 
+    /**
+     * go to the sign up page to make new profile
+     * @param actionEvent by click on a button
+     * @throws IOException because of using pageLoader
+     */
     public void sign_up(ActionEvent actionEvent) throws IOException { // go to signup page
         new PageLoader().load("signUp");
     }
