@@ -4,6 +4,7 @@ import Model.Post;
 import Model.Profile;
 
 import java.io.*;
+import java.util.Vector;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentSkipListSet;
 /**
@@ -52,11 +53,12 @@ public class Database {
         try {
             FileInputStream fin = new FileInputStream(Database.PostFile);
             ObjectInputStream inFromFile = new ObjectInputStream(fin);
-            Server.posts = new ConcurrentSkipListSet<>((ConcurrentSkipListSet<Post>) inFromFile.readObject());
+//            Server.posts = new ConcurrentSkipListSet<>((ConcurrentSkipListSet<Post>) inFromFile.readObject());
+            Server.posts = new Vector<>((ConcurrentSkipListSet<Post>) inFromFile.readObject());
             inFromFile.close();
             fin.close();
         } catch (EOFException | StreamCorruptedException e) {
-            Server.posts = new ConcurrentSkipListSet<>();
+            Server.posts = new Vector<>();
         } catch (Exception e) {
             e.printStackTrace();
         }

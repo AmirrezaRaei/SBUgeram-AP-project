@@ -132,7 +132,7 @@ public class API {
         Map<String, Object> output = new HashMap<>();
         Profile profile = (Profile) input.get("profile");
         String username = profile.getUsername();
-        Set<Post> help = Server.profiles.get(username).getPosts();
+        Vector<Post> help = Server.profiles.get(username).getPosts();
         output.put("myPosts", help);
         return output;
     }

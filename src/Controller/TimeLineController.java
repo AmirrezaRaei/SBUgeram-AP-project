@@ -52,7 +52,8 @@ public class TimeLineController {
 //            List<String> pu = post.share.stream().map(temp -> temp.getUsername())
 //                    .collect(Collectors.toList());
         }
-        postList.setItems(FXCollections.observableArrayList(postSet));
+        post_List = postSet.stream().sorted().collect(Collectors.toList());
+        postList.setItems(FXCollections.observableArrayList(post_List));
         postList.setCellFactory(PostList -> new PostItem());
     }
 

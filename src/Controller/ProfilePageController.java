@@ -54,7 +54,7 @@ public class ProfilePageController {
     public void initialize() {
         String[] counter = new String[3];
         Main.update();
-        ClientAPI.getAllOfMyPosts(currentUser);
+        ClientAPI.getMyPosts(currentUser);
         byte[] image = ClientAPI.getProfile(currentUser);
         if (image != null)
             profile_image.setImage(new Image(new ByteArrayInputStream(image)));

@@ -80,8 +80,8 @@ public class UploadNewPostController {
             currentPost.setImage(image);
             ClientAPI.addPost(currentPost, image, path);
         } else ClientAPI.addPost(currentPost);
-//        posts.add(currentPost);
-//        currentUser.myPosts.add(currentPost);
+        posts.add(currentPost);
+        currentUser.myPosts.add(currentPost);
         new PageLoader().load("TimeLine");
     }
 

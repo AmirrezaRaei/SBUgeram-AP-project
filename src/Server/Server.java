@@ -10,6 +10,7 @@ import java.net.Socket;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.Vector;
 
 /**
  * <h1>Server</h1>
@@ -23,7 +24,7 @@ public class Server implements Runnable {
     private static boolean isServerUp = true;
 
     public static Map<String, Profile> profiles = new HashMap<>();
-    public static Set<Post> posts = null;
+    public static Vector<Post> posts;
     public static ServerSocket serverSocket = null;
 
     public static boolean isServerUp() {

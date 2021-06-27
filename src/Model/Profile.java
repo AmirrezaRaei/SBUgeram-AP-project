@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.Vector;
 import java.util.concurrent.ConcurrentSkipListSet;
 import java.util.concurrent.CopyOnWriteArrayList;
 /**
@@ -29,7 +30,7 @@ public class Profile implements Serializable,Comparable {
     public byte[] profileImage;
     //    protected boolean private_page;
     protected String bio;
-    public Set<Post> myPosts = new ConcurrentSkipListSet<>();
+    public Vector<Post> myPosts = new Vector<>();
     public List<Profile> followers = new CopyOnWriteArrayList<>();
     public List<Profile> following = new CopyOnWriteArrayList<>();
 
@@ -110,7 +111,7 @@ public class Profile implements Serializable,Comparable {
         return bio;
     }
 
-    public Set<Post> getPosts() {
+    public Vector<Post> getPosts() {
         return myPosts;
     }
 
@@ -168,7 +169,7 @@ public class Profile implements Serializable,Comparable {
         this.bio = bio;
     }
 
-    public void setPosts(Set<Post> posts) {
+    public void setPosts(Vector<Post> posts) {
         this.myPosts = posts;
     }
 
